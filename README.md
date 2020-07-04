@@ -17,6 +17,8 @@ You can change the path of the report files to anywhere on your pc. Keep in mind
 # How to run
 open any bash/cmd in the project file and run "node POE_Horticrafting_Tracker.js"
 this will fetch your stash every 30 seconds and create an organized text list of all your different harvest crafts
+leave this bash window open as long as you want to be updated the files.
+close by ctrl-c or just closing the window
 
 # I dont have node!
 dowload and install it here https://nodejs.org/en/download/
