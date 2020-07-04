@@ -1,0 +1,66 @@
+
+
+Remove/Add
+Remove a random Attack modifier from an item and add a new Attack modifier (81)
+Remove a random Caster modifier from an item and add a new Caster modifier (65)
+Remove a random Caster modifier from an item and add a new Caster modifier (65)
+Remove a random Caster modifier from an item and add a new Caster modifier (82)
+Remove a random Chaos modifier from an item and add a new Chaos modifier (83)
+Remove a random Chaos modifier from an item and add a new Chaos modifier (83)
+Remove a random Defence modifier from an item and add a new Defence modifier (82)
+Remove a random Life modifier from an item and add a new Life modifier (65)
+Remove a random non-Attack modifier from an item and add a new Attack modifier (81)
+Remove a random non-Attack modifier from an item and add a new Attack modifier (81)
+Remove a random non-Attack modifier from an item and add a new Attack modifier (81)
+Remove a random non-Chaos modifier from an item and add a new Chaos modifier (82)
+Remove a random non-Chaos modifier from an item and add a new Chaos modifier (82)
+Remove a random non-Cold modifier from an item and add a new Cold modifier (82)
+Remove a random non-Cold modifier from an item and add a new Cold modifier (78)
+Remove a random non-Defence modifier from an item and add a new Defence modifier (82)
+Remove a random non-Defence modifier from an item and add a new Defence modifier (82)
+Remove a random non-Defence modifier from an item and add a new Defence modifier (82)
+Remove a random non-Fire modifier from an item and add a new Fire modifier (80)
+Remove a random non-Influence modifier from an item and add a new Influence modifier (68)
+Remove a random non-Life modifier from an item and add a new Life modifier (83)
+Remove a random non-Life modifier from an item and add a new Life modifier (81)
+Remove a random non-Life modifier from an item and add a new Life modifier (81)
+Remove a random non-Lightning modifier from an item and add a new Lightning modifier (82)
+Remove a random non-Lightning modifier from an item and add a new Lightning modifier (82)
+Remove a random non-Lightning modifier from an item and add a new Lightning modifier (83)
+Remove a random non-Physical modifier from an item and add a new Physical modifier (80)
+Remove a random non-Physical modifier from an item and add a new Physical modifier (82)
+Remove a random non-Physical modifier from an item and add a new Physical modifier (83)
+
+
+Remove
+Remove a random Attack modifier from an item (79)
+Remove a random Attack modifier from an item (78)
+Remove a random Caster modifier from an item (82)
+Remove a random Chaos modifier from an item (82)
+Remove a random Defence modifier from an item (81)
+Remove a random Fire modifier from an item (80)
+Remove a random Life modifier from an item (83)
+
+
+Change
+Change a modifier that grants Lightning Resistance into a similar-tier modifier that grants Fire Resistance (81)
+
+
+Reforge
+Reforge a Rare item with new random modifiers, including a Critical modifier (83)
+Reforge a Rare item with new random modifiers, including a Critical modifier (83)
+
+
+Sacrifice
+Sacrifice a Corrupted Gem to gain 30% of the gem's total experience stored as a Facetor's Lens (67)
+Sacrifice a Corrupted Gem to gain 50% of the gem's total experience stored as a Facetor's Lens (67)
+
+
+Augment
+Augment an item with a new Attack modifier (65)
+Augment an item with a new Attack modifier (81)
+Augment an item with a new Life modifier (65)
+Augment an item with a new Lightning modifier (82)
+Augment a Magic or Rare item with a new Physical modifier with Lucky values (80)
+Augment a Magic or Rare item with a new Physical modifier (81)
+Augment a Magic or Rare item with a new Physical modifier with Lucky values (82)
