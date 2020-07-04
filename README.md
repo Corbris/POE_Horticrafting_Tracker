@@ -4,6 +4,7 @@ Will scan your stash every 30 seconds finding all Horticrafting Station's and th
 This uses node and can only be ran from CLI at this point.
 
 [Expected list of crafts](https://github.com/Corbris/POE_Horticrafting_Tracker/blob/master/REPORTS/CraftList.txt)
+
 [List formated for discord](https://github.com/Corbris/POE_Horticrafting_Tracker/blob/master/REPORTS/CraftList_Discord.txt)
 
 # How to install
