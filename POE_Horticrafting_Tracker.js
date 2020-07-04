@@ -56,6 +56,9 @@ function getStashes(tab){
 
 async function getALLhorticraftItems(){
     //wait to get the list of all horticraftItems;
+    horticraftItems=[];
+    flatCraftList=[];
+    GroupsCraftList=[];
     console.log("fetching tabs");
     for(let i=0; i<numberOfTabs; i++){
         console.log(i);
@@ -210,4 +213,4 @@ function discordList(){
 getALLhorticraftItems();
 setInterval(function(){
     getALLhorticraftItems();
-}, 30000)
+}, 60000)
