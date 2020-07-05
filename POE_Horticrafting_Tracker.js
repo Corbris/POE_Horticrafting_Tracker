@@ -103,9 +103,10 @@ function createCraftStructs(craft){
             thisCraft.add_type = formatting[3] ? formatting[3].substring(1, formatting[3].length-1) : "";
             thisCraft.ilevel = craft.match(/\([0-9]*\)/g,'').toString().replace(/[()]/g,'');
             thisCraft.price = getPriceFromConfig(thisCraft.function, thisCraft.add_type);
+            thisCraft.lucky = craft.indexOf("Lucky")>-1 ? true : false;
             thisCraft.text= craft;
             thisCraft.cleanedtext= craft.replace(/\<white\>/g,'').replace(/[{}]/g,'');
-            thisCraft.discrodtext= `Remove **${thisCraft.remove_type}** add **${thisCraft.add_type}**` 
+            thisCraft.discrodtext= thisCraft.lucky? `Remove **${thisCraft.remove_type}** add **Lucky** **${thisCraft.add_type}**` : `Remove **${thisCraft.remove_type}** add **${thisCraft.add_type}**`;
             thisCraft.discrodtext = getDiscordStringFromConfig(thisCraft.function, thisCraft.remove_type, thisCraft.ilevel, thisCraft.price, thisCraft.discrodtext);
           }
           else{
@@ -114,6 +115,7 @@ function createCraftStructs(craft){
             thisCraft.Grouptype = thisCraft.remove_type;
             thisCraft.ilevel = craft.match(/\([0-9]*\)/g,'').toString().replace(/[()]/g,'');
             thisCraft.price = getPriceFromConfig(thisCraft.function, thisCraft.remove_type);
+            thisCraft.lucky = craft.indexOf("Lucky")>-1 ? true : false;
             thisCraft.text=craft;
             thisCraft.cleanedtext= craft.replace(/\<white\>/g,'').replace(/[{}]/g,'');
             thisCraft.discrodtext= `Remove **${thisCraft.remove_type}**`
@@ -127,6 +129,7 @@ function createCraftStructs(craft){
             thisCraft.change_end_type = formatting[2] ? formatting[2].substring(1, formatting[2].length-1) : "";
             thisCraft.ilevel = craft.match(/\([0-9]*\)/g,'').toString().replace(/[()]/g,'');
             thisCraft.price = getPriceFromConfig(thisCraft.function, thisCraft.change_type);
+            thisCraft.lucky = craft.indexOf("Lucky")>-1 ? true : false;
             thisCraft.text=craft;
             thisCraft.cleanedtext= craft.replace(/\<white\>/g,'').replace(/[{}]/g,'');
             thisCraft.discrodtext= `Change **${thisCraft.change_type}** to **${thisCraft.change_end_type}**`
@@ -135,12 +138,14 @@ function createCraftStructs(craft){
         case "Augment":
             thisCraft.function ="Augment";
             thisCraft.augment_type = formatting[1] ? formatting[1].substring(1, formatting[1].length-1) : "";
+            console.log(craft);
             thisCraft.Grouptype = thisCraft.augment_type;
             thisCraft.ilevel = craft.match(/\([0-9]*\)/g,'').toString().replace(/[()]/g,'');
             thisCraft.price = getPriceFromConfig(thisCraft.function, thisCraft.augment_type);
+            thisCraft.lucky = craft.indexOf("Lucky")>-1 ? true : false;
             thisCraft.text=craft;
             thisCraft.cleanedtext= craft.replace(/\<white\>/g,'').replace(/[{}]/g,'');
-            thisCraft.discrodtext= `Augment **${thisCraft.augment_type}**`
+            thisCraft.discrodtext= thisCraft.lucky? `Augment **Lucky** **${thisCraft.augment_type}**` : `Augment **${thisCraft.augment_type}**`;
             thisCraft.discrodtext = getDiscordStringFromConfig(thisCraft.function, thisCraft.augment_type, thisCraft.ilevel, thisCraft.price, thisCraft.discrodtext);
           break;
         default:
@@ -149,6 +154,7 @@ function createCraftStructs(craft){
             thisCraft.Grouptype = thisCraft.arguments[0];
             thisCraft.ilevel = craft.match(/\([0-9]*\)/g,'').toString().replace(/[()]/g,'');
             thisCraft.price = getPriceFromConfig(thisCraft.function, thisCraft.Grouptype);
+            thisCraft.lucky = craft.indexOf("Lucky")>-1 ? true : false;
             thisCraft.text=craft;
             thisCraft.cleanedtext= craft.replace(/\<white\>/g,'').replace(/[{}]/g,'');
             thisCraft.discrodtext= craft.replace(/\<white\>/g,'').replace(/[{}]/g,'**').replace(/\([0-9]*\)/g,'');
@@ -174,7 +180,7 @@ function getPriceFromConfig(functionType, type){
     }
 }
 
-function getDiscordStringFromConfig(functionType, type, ilevel, price, defaultString){
+function getDiscordStringFromConfig(functionType, type, ilevel, price, defaultString, lucky){
     let discrodtext = "";
     if(config.DiscordListInclude){
         if(config.DiscordListInclude.hideFunctions.includes(functionType)){
@@ -203,7 +209,12 @@ function group(){
     //group/sort crafts.
     GroupsCraftList = _.groupBy(flatCraftList, 'function');
     Object.keys(GroupsCraftList).forEach(craftType => {
-        GroupsCraftList[craftType].sort((a, b) =>  (a.Grouptype > b.Grouptype) ? 1 : -1);
+        GroupsCraftList[craftType].sort((a, b) =>  {
+            if(a.Grouptype == b.Grouptype){
+                return (a.ilevel < b.ilevel) ? 1: -1;
+            }
+            else return (a.Grouptype > b.Grouptype) ? 1 : -1
+        });
     });
 
 }
@@ -227,22 +238,27 @@ function discordList(){
     let lastdiscordString="";
     let count=1;
     let discordString="";
-    // Object.keys(GroupsCraftList).forEach(craftType => {
-    //     discordString+='\n\n'+`**${craftType}**`+'\n';
-    //     GroupsCraftList[craftType].forEach(craft => {
-    //         discordString+=craft.discrodtext+'\n';
-    //     })
-    // });
-
     //discord markdown and marking multiples.
+
+    //filter the empty 
+    Object.keys(GroupsCraftList).forEach(craftType => {
+        GroupsCraftList[craftType] = GroupsCraftList[craftType].filter(craft => {
+            if(craft.discrodtext) return craft;
+        });
+
+        if(GroupsCraftList[craftType].length==0) delete GroupsCraftList[craftType];
+    });
     
     Object.keys(GroupsCraftList).forEach(craftType => {
         if(!config.DiscordListInclude.hideFunctions.includes(craftType))discordString+='\n\n'+`**${craftType}**\n`;
+
         GroupsCraftList[craftType].forEach(function(craft, index){
             if(craft.discrodtext){
+                console.log(craft.discrodtext);
                 if(lastdiscordString == craft.discrodtext){
                     count++;
                     if(index == GroupsCraftList[craftType].length-1){
+                        console.log("END OF GROUP");
                         discordString+=lastdiscordString;
                         discordString+= count>1 ? ` -x${count}\n` : '\n';
                         count=1;
@@ -255,12 +271,16 @@ function discordList(){
                     }
 
                     if(index == GroupsCraftList[craftType].length-1){
+                        console.log("END OF GROUP");
                         discordString+=craft.discrodtext+'\n';
                         count=1;
                     }
                     count=1;
                 }
                 lastdiscordString=craft.discrodtext;
+            }
+            else{
+                numberOfCrafts--;
             }
         })
         lastdiscordString="";
@@ -270,7 +290,6 @@ function discordList(){
             if (err) return console.log(err);
         });
     }
-
 }
 
 if (!fs.existsSync(config.DiscordCraftListPath)){
