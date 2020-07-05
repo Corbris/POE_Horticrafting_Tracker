@@ -138,7 +138,6 @@ function createCraftStructs(craft){
         case "Augment":
             thisCraft.function ="Augment";
             thisCraft.augment_type = formatting[1] ? formatting[1].substring(1, formatting[1].length-1) : "";
-            console.log(craft);
             thisCraft.Grouptype = thisCraft.augment_type;
             thisCraft.ilevel = craft.match(/\([0-9]*\)/g,'').toString().replace(/[()]/g,'');
             thisCraft.price = getPriceFromConfig(thisCraft.function, thisCraft.augment_type);
@@ -254,11 +253,9 @@ function discordList(){
 
         GroupsCraftList[craftType].forEach(function(craft, index){
             if(craft.discrodtext){
-                console.log(craft.discrodtext);
                 if(lastdiscordString == craft.discrodtext){
                     count++;
                     if(index == GroupsCraftList[craftType].length-1){
-                        console.log("END OF GROUP");
                         discordString+=lastdiscordString;
                         discordString+= count>1 ? ` -x${count}\n` : '\n';
                         count=1;
@@ -271,7 +268,6 @@ function discordList(){
                     }
 
                     if(index == GroupsCraftList[craftType].length-1){
-                        console.log("END OF GROUP");
                         discordString+=craft.discrodtext+'\n';
                         count=1;
                     }

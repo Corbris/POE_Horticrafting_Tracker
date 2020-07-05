@@ -1,0 +1,58 @@
+{
+"accountName":"POEaccountName",
+"POESESSID": "xxxxxGetFrompathofexile.com/xxxxx",
+"craftListPath":"./REPORTS/CraftList.txt",
+"DiscordCraftListPath":"./REPORTS/CraftList_Discord.txt",
+"DiscordListInclude":{
+    "hideFunctions":["Reforge","Randomise","Sacrifice"],
+    "hideTypes":["non-Cold","non-Fire", "non-Lightning", "non-Life", "non-Defence", "non-Chaos", "non-Attack", "non-Physical"],
+    "hideIlevleUnder": 76,
+    "price": true,
+    "ilevel": true
+},
+"price":{
+    "default": "30c",
+    "Remove":{
+        "default":"40c",
+        "Life":"50c",
+        "Attack":"40c",
+        "Defence": "40c",
+        "Caster":"40c",
+        "Physical":"40c",
+        "Fire":"40c",
+        "Cold":"40c",
+        "Lightning":"40c",
+        "Chaos":"60c"
+    },
+    "Remove/Add":{
+        "default":"50c",
+        "Life":"60c",
+        "Attack":"50c",
+        "Defence": "50c",
+        "Caster":"50c",
+        "Physical":"50c",
+        "Fire":"60c",
+        "Cold":"60c",
+        "Lightning":"60c",
+        "Chaos":"70c"
+    },
+    "Change":{
+        "default":"40c",
+        "Fire":"40c",
+        "Cold":"40c",
+        "Lightning":"40c"
+    },
+    "Augment":{
+        "default":"50c",
+        "Life":"70c",
+        "Attack":"50c",
+        "Defence": "50c",
+        "Caster":"50c",
+        "Physical":"50c",
+        "Fire":"50c",
+        "Cold":"50c",
+        "Lightning":"50c",
+        "Chaos":"90c"
+    }
+}
+}
