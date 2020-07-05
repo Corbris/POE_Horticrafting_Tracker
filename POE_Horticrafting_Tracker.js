@@ -237,7 +237,7 @@ function humanList(){
 function discordList(){
     let lastdiscordString="";
     let count=1;
-    let discordString="";
+    let discordString=`[HSC]  IGN: @${config.accountName}`;
     //discord markdown and marking multiples.
 
     //filter the empty 
