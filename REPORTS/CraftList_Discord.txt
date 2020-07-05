@@ -1,1 +1,34 @@
-[HSC]  IGN: @POEaccountName
+[HSC]  IGN: @Corbris
+
+**Remove**
+Remove **Attack** i83 *-40c* -x2
+Remove **Attack** i79 *-40c*
+Remove **Attack** i78 *-40c*
+Remove **Caster** i82 *-40c*
+Remove **Chaos** i82 *-60c*
+Remove **Cold** i83 *-40c* -x2
+Remove **Life** i83 *-50c*
+Remove **Life** i82 *-50c*
+
+
+**Remove/Add**
+Remove **Attack** add **Attack** i83 *-50c*
+Remove **Attack** add **Attack** i82 *-50c*
+Remove **Attack** add **Attack** i81 *-50c*
+Remove **Caster** add **Caster** i82 *-50c*
+Remove **Chaos** add **Chaos** i83 *-70c* -x3
+Remove **Chaos** add **Chaos** i81 *-70c* -x2
+Remove **Cold** add **Cold** i82 *-60c*
+Remove **Critical** add **Critical** i80 *-50c*
+
+
+**Augment**
+Augment **Attack** i83 *-50c*
+Augment **Attack** i81 *-50c*
+Augment **Chaos** i82 *-90c*
+Augment **Chaos** i78 *-90c*
+Augment **Lucky** **Physical** i82 *-50c*
+
+
+**Change**
+Change **Lightning** to **Fire** i81 *-40c*
