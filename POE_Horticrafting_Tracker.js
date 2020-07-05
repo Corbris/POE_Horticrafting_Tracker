@@ -273,6 +273,17 @@ function discordList(){
 
 }
 
+if (!fs.existsSync(config.DiscordCraftListPath)){
+    fs.mkdir(config.DiscordCraftListPath.substring(0,config.DiscordCraftListPath.lastIndexOf("/")+1), { recursive: true }, (err) => {
+        if (err) throw err;
+    });
+}
+
+if (!fs.existsSync(config.craftListPath)){
+    fs.mkdir(config.craftListPath.substring(0,config.craftListPath.lastIndexOf("/")+1), { recursive: true }, (err) => {
+        if (err) throw err;
+    });
+}
 
 getALLhorticraftItems();
 setInterval(function(){
