@@ -2,7 +2,7 @@ const https = require('https');
 const _ = require('lodash');
 const moment = require('moment');
 const fs = require('fs');
-const config = require("./config.json");
+let config = require("./config.json");
 
 let numberOfTabs=1;
 let horticraftItems=[];
@@ -12,7 +12,7 @@ let GroupsCraftList=[];
 
 function getStashes(tab){
     //will get a single stash and look for Horticrafting Stations adding them to a list.
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
         let options = {
             host: 'www.pathofexile.com',
             method: 'GET',
@@ -34,7 +34,7 @@ function getStashes(tab){
         // The whole response has been received. Print out the result.
         resp.on('end', () => {
             data = JSON.parse(data);
-            numberOfTabs = data.numTabs?data.numTabs:1
+            numberOfTabs = data.numTabs?data.numTabs:numberOfTabs;
             if(data.items){
                 data.items.forEach(item => {
                     if(item.typeLine == "Horticrafting Station"){
@@ -49,7 +49,7 @@ function getStashes(tab){
             console.log("Error: " + err.message);
             resolve("error");
         });
-        
+
         req.end();
     });
 }
@@ -59,7 +59,9 @@ async function getALLhorticraftItems(){
     horticraftItems=[];
     flatCraftList=[];
     GroupsCraftList=[];
+    config = require("./config.json");
     console.log("fetching tabs");
+
     for(let i=0; i<numberOfTabs; i++){
         console.log(i);
         let x = await getStashes(i);
@@ -84,6 +86,8 @@ function forEachCraft(){
     humanList();
     discordList();
     console.log("Updated at: " + moment().format("DD-MM-YYYY h:mm:ss"));
+        
+
 }
 
 function createCraftStructs(craft){
@@ -98,18 +102,22 @@ function createCraftStructs(craft){
             thisCraft.Grouptype = thisCraft.remove_type;
             thisCraft.add_type = formatting[3] ? formatting[3].substring(1, formatting[3].length-1) : "";
             thisCraft.ilevel = craft.match(/\([0-9]*\)/g,'').toString().replace(/[()]/g,'');
+            thisCraft.price = getPriceFromConfig(thisCraft.function, thisCraft.add_type);
             thisCraft.text= craft;
             thisCraft.cleanedtext= craft.replace(/\<white\>/g,'').replace(/[{}]/g,'');
-            thisCraft.discrodtext= `Remove **${thisCraft.remove_type}** add **${thisCraft.add_type}** -i${thisCraft.ilevel}` ;
+            thisCraft.discrodtext= `Remove **${thisCraft.remove_type}** add **${thisCraft.add_type}**` 
+            thisCraft.discrodtext = getDiscordStringFromConfig(thisCraft.function, thisCraft.remove_type, thisCraft.ilevel, thisCraft.price, thisCraft.discrodtext);
           }
           else{
             thisCraft.function ="Remove";
             thisCraft.remove_type = formatting[1] ? formatting[1].substring(1, formatting[1].length-1) : "";
             thisCraft.Grouptype = thisCraft.remove_type;
             thisCraft.ilevel = craft.match(/\([0-9]*\)/g,'').toString().replace(/[()]/g,'');
+            thisCraft.price = getPriceFromConfig(thisCraft.function, thisCraft.remove_type);
             thisCraft.text=craft;
             thisCraft.cleanedtext= craft.replace(/\<white\>/g,'').replace(/[{}]/g,'');
-            thisCraft.discrodtext= `Remove **${thisCraft.remove_type}** -i${thisCraft.ilevel}`
+            thisCraft.discrodtext= `Remove **${thisCraft.remove_type}**`
+            thisCraft.discrodtext = getDiscordStringFromConfig(thisCraft.function, thisCraft.remove_type, thisCraft.ilevel, thisCraft.price, thisCraft.discrodtext);
           }
           break;
         case "Change":
@@ -118,29 +126,76 @@ function createCraftStructs(craft){
             thisCraft.Grouptype = thisCraft.change_type;
             thisCraft.change_end_type = formatting[2] ? formatting[2].substring(1, formatting[2].length-1) : "";
             thisCraft.ilevel = craft.match(/\([0-9]*\)/g,'').toString().replace(/[()]/g,'');
+            thisCraft.price = getPriceFromConfig(thisCraft.function, thisCraft.change_type);
             thisCraft.text=craft;
             thisCraft.cleanedtext= craft.replace(/\<white\>/g,'').replace(/[{}]/g,'');
-            thisCraft.discrodtext= `Change **${thisCraft.change_type}** to **${thisCraft.change_end_type}** -i${thisCraft.ilevel}`
+            thisCraft.discrodtext= `Change **${thisCraft.change_type}** to **${thisCraft.change_end_type}**`
+            thisCraft.discrodtext = getDiscordStringFromConfig(thisCraft.function, thisCraft.change_type, thisCraft.ilevel, thisCraft.price, thisCraft.discrodtext);
           break;
         case "Augment":
             thisCraft.function ="Augment";
             thisCraft.augment_type = formatting[1] ? formatting[1].substring(1, formatting[1].length-1) : "";
             thisCraft.Grouptype = thisCraft.augment_type;
             thisCraft.ilevel = craft.match(/\([0-9]*\)/g,'').toString().replace(/[()]/g,'');
+            thisCraft.price = getPriceFromConfig(thisCraft.function, thisCraft.augment_type);
             thisCraft.text=craft;
             thisCraft.cleanedtext= craft.replace(/\<white\>/g,'').replace(/[{}]/g,'');
-            thisCraft.discrodtext= `Augment **${thisCraft.augment_type}** -i${thisCraft.ilevel}`
+            thisCraft.discrodtext= `Augment **${thisCraft.augment_type}**`
+            thisCraft.discrodtext = getDiscordStringFromConfig(thisCraft.function, thisCraft.augment_type, thisCraft.ilevel, thisCraft.price, thisCraft.discrodtext);
           break;
         default:
             thisCraft.function = formatting[0].substring(1, formatting[0].length-1);
             thisCraft.arguments = formatting.slice(1, formatting.length);
             thisCraft.Grouptype = thisCraft.arguments[0];
             thisCraft.ilevel = craft.match(/\([0-9]*\)/g,'').toString().replace(/[()]/g,'');
+            thisCraft.price = getPriceFromConfig(thisCraft.function, thisCraft.Grouptype);
             thisCraft.text=craft;
             thisCraft.cleanedtext= craft.replace(/\<white\>/g,'').replace(/[{}]/g,'');
-            thisCraft.discrodtext= craft.replace(/\<white\>/g,'').replace(/[{}]/g,'**').replace(/\([0-9]*\)/g,'') + `-i${thisCraft.ilevel}`;
+            thisCraft.discrodtext= craft.replace(/\<white\>/g,'').replace(/[{}]/g,'**').replace(/\([0-9]*\)/g,'');
+            thisCraft.discrodtext = getDiscordStringFromConfig(thisCraft.function, thisCraft.Grouptype, thisCraft.ilevel, thisCraft.price, thisCraft.discrodtext);
     }
     flatCraftList.push(thisCraft);
+}
+
+function getPriceFromConfig(functionType, type){
+    if(config.price){
+        if(config.price[functionType]){
+            if(config.price[functionType][type]){
+                return(config.price[functionType][type]);
+            }
+            return(config.price[functionType].default);
+        }
+        else{
+            return(config.price.default);
+        }
+    }
+    else{
+        return("");
+    }
+}
+
+function getDiscordStringFromConfig(functionType, type, ilevel, price, defaultString){
+    let discrodtext = "";
+    if(config.DiscordListInclude){
+        if(config.DiscordListInclude.hideFunctions.includes(functionType)){
+            return discrodtext;
+        }
+        if(config.DiscordListInclude.hideTypes.includes(type)){
+            return discrodtext;
+        }
+        if(config.DiscordListInclude.hideIlevleUnder > ilevel){
+            return discrodtext;
+        }
+
+        discrodtext = defaultString;
+        if(config.DiscordListInclude.ilevel == true){
+            discrodtext +=` i${ilevel}`;
+        }
+        if(config.DiscordListInclude.price == true){
+            discrodtext +=` *-${price}*`;
+        }
+        return discrodtext;
+    }
 }
 
 
@@ -150,6 +205,7 @@ function group(){
     Object.keys(GroupsCraftList).forEach(craftType => {
         GroupsCraftList[craftType].sort((a, b) =>  (a.Grouptype > b.Grouptype) ? 1 : -1);
     });
+
 }
 
 function humanList(){
@@ -161,9 +217,11 @@ function humanList(){
             humanString+=craft.cleanedtext+'\n';
         })
     });
-    fs.writeFile(config.craftListPath, humanString, function (err) {
-        if (err) return console.log(err);
-      });
+    if(humanString.length>0){
+        fs.writeFile(config.craftListPath, humanString, function (err) {
+            if (err) return console.log(err);
+        });
+    }
 }
 function discordList(){
     let lastdiscordString="";
@@ -177,40 +235,46 @@ function discordList(){
     // });
 
     //discord markdown and marking multiples.
+    
     Object.keys(GroupsCraftList).forEach(craftType => {
-        discordString+='\n\n'+`**${craftType}**\n`;
+        if(!config.DiscordListInclude.hideFunctions.includes(craftType))discordString+='\n\n'+`**${craftType}**\n`;
         GroupsCraftList[craftType].forEach(function(craft, index){
-            if(lastdiscordString == craft.discrodtext){
-                count++;
-                if(index == GroupsCraftList[craftType].length-1){
-                    discordString+=lastdiscordString;
-                    discordString+= count>1 ? ` -x${count}\n` : '\n';
-                    count=1;
+            if(craft.discrodtext){
+                if(lastdiscordString == craft.discrodtext){
+                    count++;
+                    if(index == GroupsCraftList[craftType].length-1){
+                        discordString+=lastdiscordString;
+                        discordString+= count>1 ? ` -x${count}\n` : '\n';
+                        count=1;
+                    }
                 }
-            }
-            else{
-                if(lastdiscordString){
-                    discordString+= lastdiscordString;
-                    discordString+= count>1 ? ` -x${count}\n` : '\n';
-                }
+                else{
+                    if(lastdiscordString){
+                        discordString+= lastdiscordString;
+                        discordString+= count>1 ? ` -x${count}\n` : '\n';
+                    }
 
-                if(index == GroupsCraftList[craftType].length-1){
-                    discordString+=craft.discrodtext+'\n';
+                    if(index == GroupsCraftList[craftType].length-1){
+                        discordString+=craft.discrodtext+'\n';
+                        count=1;
+                    }
                     count=1;
                 }
-                count=1;
+                lastdiscordString=craft.discrodtext;
             }
-            lastdiscordString=craft.discrodtext;
         })
         lastdiscordString="";
     });
-    fs.writeFile(config.DiscordCraftListPath, discordString, function (err) {
-        if (err) return console.log(err);
-      });
+    if(discordString.length>0){
+        fs.writeFile(config.DiscordCraftListPath, discordString, function (err) {
+            if (err) return console.log(err);
+        });
+    }
+
 }
 
 
 getALLhorticraftItems();
 setInterval(function(){
     getALLhorticraftItems();
-}, 60000)
+}, 120000)

@@ -1,56 +1,31 @@
 
 
-**Remove/Add**
-Remove **Attack** add **Attack** -i81
-Remove **Caster** add **Caster** -i65 -x2
-Remove **Caster** add **Caster** -i82
-Remove **Chaos** add **Chaos** -i83 -x2
-Remove **Defence** add **Defence** -i82
-Remove **Life** add **Life** -i65
-Remove **non-Attack** add **Attack** -i81 -x3
-Remove **non-Chaos** add **Chaos** -i82 -x2
-Remove **non-Cold** add **Cold** -i82
-Remove **non-Cold** add **Cold** -i78
-Remove **non-Defence** add **Defence** -i82 -x3
-Remove **non-Fire** add **Fire** -i80
-Remove **non-Influence** add **Influence** -i68
-Remove **non-Life** add **Life** -i83
-Remove **non-Life** add **Life** -i81 -x2
-Remove **non-Lightning** add **Lightning** -i82 -x2
-Remove **non-Lightning** add **Lightning** -i83
-Remove **non-Physical** add **Physical** -i80
-Remove **non-Physical** add **Physical** -i82
-Remove **non-Physical** add **Physical** -i83
-
-
 **Remove**
-Remove **Attack** -i79
-Remove **Attack** -i78
-Remove **Caster** -i82
-Remove **Chaos** -i82
-Remove **Defence** -i81
-Remove **Fire** -i80
-Remove **Life** -i83
+Remove **Attack** i79 *-40c*
+Remove **Attack** i83 *-40c*
+Remove **Attack** i78 *-40c*
+Remove **Attack** i83 *-40c*
+Remove **Caster** i82 *-40c*
+Remove **Chaos** i82 *-60c*
+Remove **Fire** i80 *-40c*
+
+
+**Remove/Add**
+Remove **Attack** add **Attack** i81 *-50c*
+Remove **Attack** add **Attack** i83 *-50c*
+Remove **Caster** add **Caster** i82 *-50c*
+Remove **Chaos** add **Chaos** i81 *-70c* -x2
+Remove **Chaos** add **Chaos** i83 *-70c* -x3
 
 
 **Change**
-Change **Lightning** to **Fire** -i81
-
-
-**Reforge**
-**Reforge** a **Rare** item with new random modifiers, including a **Critical** modifier -i83 -x2
-
-
-**Sacrifice**
-**Sacrifice** a **Corrupted Gem** to gain 30% of the gem's total experience stored as a Facetor's Lens -i67
-**Sacrifice** a **Corrupted Gem** to gain 50% of the gem's total experience stored as a Facetor's Lens -i67
+Change **Lightning** to **Fire** i81 *-40c*
 
 
 **Augment**
-Augment **Attack** -i65
-Augment **Attack** -i81
-Augment **Life** -i65
-Augment **Lightning** -i82
-Augment **Physical** -i80
-Augment **Physical** -i81
-Augment **Physical** -i82
+Augment **Attack** i81 *-50c*
+Augment **Attack** i83 *-50c*
+Augment **Chaos** i78 *-90c*
+Augment **Chaos** i82 *-90c*
+Augment **Physical** i80 *-50c*
+Augment **Physical** i82 *-50c*
