@@ -2,7 +2,9 @@ const https = require('https');
 const _ = require('lodash');
 const moment = require('moment');
 const fs = require('fs');
-let config = require("./config.json");
+//let config = require("./config.json");
+let RAWconfig = fs.readFileSync('./config.json');
+let config = JSON.parse(RAWconfig);
 
 let numberOfTabs=1;
 let horticraftItems=[];
@@ -59,9 +61,7 @@ async function getALLhorticraftItems(){
     horticraftItems=[];
     flatCraftList=[];
     GroupsCraftList=[];
-    config = require("./config.json");
     console.log("fetching tabs");
-
     for(let i=0; i<numberOfTabs; i++){
         console.log(i);
         let x = await getStashes(i);
