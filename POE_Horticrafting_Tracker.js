@@ -1,168 +1,116 @@
-const https = require('https');
+const axios = require('axios');
 const _ = require('lodash');
-const moment = require('moment');
 const fs = require('fs');
-//let config = require("./config.json");
-let RAWconfig = fs.readFileSync('./config.json');
-let config = JSON.parse(RAWconfig);
 
-let numberOfTabs=1;
-let horticraftItems=[];
-let flatCraftList=[];
-let GroupsCraftList=[];
+const config = require('./config.json')
+const craftsList = require('./crafts.json')
 
+let failedToFetch = false;
+/**
+ * Gets the users number of tabs
+ * @returns [array of tab names where tab id is the index in the array]
+ */
+async function getTabList(){
+    const numberOfTabs = await axios.get(
+        `https://www.pathofexile.com/character-window/get-stash-items?tabs=1&league=Harvest&accountName=${config.accountName}`,
+        { headers: { Cookie: `POESESSID=${config.POESESSID}` } },
+    ).catch(function (error) {
+        // handle error
+        let err = (error.data || {} ).message ? error.data.message : error.response.statusText;
+        failedToFetch = true;
+        console.log("ERROR:", err);
+    });
 
-function getStashes(tab){
-    //will get a single stash and look for Horticrafting Stations adding them to a list.
-    return new Promise((resolve, reject) => {
-        let options = {
-            host: 'www.pathofexile.com',
-            method: 'GET',
-            path: `/character-window/get-stash-items?league=Harvest&tabs=1&tabIndex=${tab}&accountName=${config.accountName}`,
-            headers: {
-                'Content-Type': '*',
-                'Cookie': `POESESSID=${config.POESESSID}`
-            },
-        };
-        
-        let req = https.request(options, (resp) => {
-        let data = '';
-        
-        // A chunk of data has been recieved.
-        resp.on('data', (chunk) => {
-            data += chunk;
-        });
-        
-        // The whole response has been received. Print out the result.
-        resp.on('end', () => {
-            data = JSON.parse(data);
-            numberOfTabs = data.numTabs?data.numTabs:numberOfTabs;
-            if(data.items){
-                data.items.forEach(item => {
-                    if(item.typeLine == "Horticrafting Station"){
-                        horticraftItems.push(item);
-                    }
-                });
+    //return ((numberOfTabs || {}).data || {}.numTabs) ? numberOfTabs.data.numTabs : 0;
+
+    return ((numberOfTabs || {}).data || {}).tabs ? numberOfTabs.data.tabs.map((value, index) => value.n):0;
+}
+/**
+ * return the tab object for N tab
+ * @param {int} tabIndex 
+ * @returns {tab object}
+ */
+async function getTabItems(tabIndex){
+    console.log("Fetching tab ", tabIndex);
+    const tabContents = await axios.get(
+        `https://www.pathofexile.com/character-window/get-stash-items?league=Harvest&tabs=1&tabIndex=${tabIndex}&accountName=${config.accountName}`,
+        { headers: { Cookie: `POESESSID=${config.POESESSID}` } },
+    ).catch(function (error) {
+        // handle error
+        let err = (error.data || {} ).message ? error.data.message : error.response.statusText;
+        failedToFetch = true;
+        console.log("ERROR:", err);
+    });
+    return ((tabContents || {}).data || {}).items || {};
+}
+
+/**
+ * returns array of all the tabs objects
+ * @returns [array of tab objects]
+ */
+async function fetchAllTabs() {
+    let tabList = await getTabList();
+    if(tabList<1) return [];
+
+    // Fetch all tabs in parallel
+    const tabsContents = await Promise.all(tabList.map((val, index) => getTabItems(index)));
+
+    return tabList.map((val, i) => {
+        return {tabName:val, items:tabsContents[i]}
+    });
+}
+
+/**
+ * returns the list of horti stations for each tab
+ * @param {array of objects} tabsContents 
+ * @returns [array of objects with array of items]
+ */
+function fetchHortiItems(tabsContents){
+    if(tabsContents<1) return [];
+    let hortiItems = tabsContents.map(tab => {
+        return {tabName:tab.tabName, items:tab.items.filter(item => {
+            return item.typeLine == 'Horticrafting Station'
+        }).map(item =>  {
+            return {craftedMods:item.craftedMods, id:item.id}
+        })}
+    });
+    return hortiItems;
+}
+
+/**
+ * adds craft metaData from crafts.json to the hortiItems objects
+ * @params [array of objects with array of items] hortiItems
+ * @returns [array of objects with array of items] hortiItems
+ */
+function formatCrafts(hortiItems){
+    if(hortiItems<1) return [];
+
+    hortiItems = hortiItems.map(tab => {
+        return {tabName:tab.tabName, items:tab.items.map(horti => {
+            if(horti.craftedMods != undefined){
+                return {craftedMods:horti.craftedMods.map(craft => {
+                    return {...craftsList[craft.replace(/( \(\d*\))/g, "")], ...{ilevel:/ \((\d*)\)/g.exec(craft)[1]}, ...{craft:craft.replace(/( \(\d*\))/g, "")}, ...{price:getPriceFromConfig(craftsList[craft.replace(/( \(\d*\))/g, "")])}};
+                }), id:horti.id}
             }
-            resolve("item");
-        });
-        
-        }).on("error", (err) => {
-            console.log("Error: " + err.message);
-            resolve("error");
-        });
+            return horti;
+        })}
+    })
 
-        req.end();
-    });
+    return hortiItems;
 }
 
-async function getALLhorticraftItems(){
-    //wait to get the list of all horticraftItems;
-    horticraftItems=[];
-    flatCraftList=[];
-    GroupsCraftList=[];
-    console.log("fetching tabs");
-    for(let i=0; i<numberOfTabs; i++){
-        console.log(i);
-        let x = await getStashes(i);
+/**
+ * returns the price from config for given craft
+ * @params {craft}
+ * @returns string price
+ */
+function getPriceFromConfig(craft){
+    if(!craft){
+        return "";
     }
+    let functionType = craft.function;
+    let type =craft.type;
 
-    //for each item.
-    forEachCraft();
-}
-
-function forEachCraft(){
-    horticraftItems.forEach(item => {
-        if(item.craftedMods){
-            item.craftedMods.forEach(craft => {
-                createCraftStructs(craft);
-            });
-        }
-    });
-
-    //global lists of crafts was made
-
-    group();
-    humanList();
-    discordList();
-    console.log("Updated at: " + moment().format("DD-MM-YYYY h:mm:ss"));
-        
-
-}
-
-function createCraftStructs(craft){
-    //format the crafts into objects.
-    let formatting = craft.match(/\{(.*?)\}/g);
-    let thisCraft = {};
-    switch(formatting[0].substring(1, formatting[0].length-1)) {
-        case "Remove":
-          if(formatting[2]){
-            thisCraft.function ="Remove/Add";
-            thisCraft.remove_type = formatting[1] ? formatting[1].substring(1, formatting[1].length-1) : "";
-            thisCraft.Grouptype = thisCraft.remove_type;
-            thisCraft.add_type = formatting[3] ? formatting[3].substring(1, formatting[3].length-1) : "";
-            thisCraft.ilevel = craft.match(/\([0-9]*\)/g,'').toString().replace(/[()]/g,'');
-            thisCraft.price = getPriceFromConfig(thisCraft.function, thisCraft.add_type);
-            thisCraft.lucky = craft.indexOf("Lucky")>-1 ? true : false;
-            thisCraft.text= craft;
-            thisCraft.cleanedtext= craft.replace(/\<white\>/g,'').replace(/[{}]/g,'');
-            thisCraft.discrodtext= thisCraft.lucky? `Remove **${thisCraft.remove_type}** add **Lucky** **${thisCraft.add_type}**` : `Remove **${thisCraft.remove_type}** add **${thisCraft.add_type}**`;
-            thisCraft.discrodtext = getDiscordStringFromConfig(thisCraft.function, thisCraft.remove_type, thisCraft.ilevel, thisCraft.price, thisCraft.discrodtext);
-          }
-          else{
-            thisCraft.function ="Remove";
-            thisCraft.remove_type = formatting[1] ? formatting[1].substring(1, formatting[1].length-1) : "";
-            thisCraft.Grouptype = thisCraft.remove_type;
-            thisCraft.ilevel = craft.match(/\([0-9]*\)/g,'').toString().replace(/[()]/g,'');
-            thisCraft.price = getPriceFromConfig(thisCraft.function, thisCraft.remove_type);
-            thisCraft.lucky = craft.indexOf("Lucky")>-1 ? true : false;
-            thisCraft.text=craft;
-            thisCraft.cleanedtext= craft.replace(/\<white\>/g,'').replace(/[{}]/g,'');
-            thisCraft.discrodtext= `Remove **${thisCraft.remove_type}**`
-            thisCraft.discrodtext = getDiscordStringFromConfig(thisCraft.function, thisCraft.remove_type, thisCraft.ilevel, thisCraft.price, thisCraft.discrodtext);
-          }
-          break;
-        case "Change":
-            thisCraft.function ="Change";
-            thisCraft.change_type = formatting[1] ? formatting[1].substring(1, formatting[1].length-1) : "";
-            thisCraft.Grouptype = thisCraft.change_type;
-            thisCraft.change_end_type = formatting[2] ? formatting[2].substring(1, formatting[2].length-1) : "";
-            thisCraft.ilevel = craft.match(/\([0-9]*\)/g,'').toString().replace(/[()]/g,'');
-            thisCraft.price = getPriceFromConfig(thisCraft.function, thisCraft.change_type);
-            thisCraft.lucky = craft.indexOf("Lucky")>-1 ? true : false;
-            thisCraft.text=craft;
-            thisCraft.cleanedtext= craft.replace(/\<white\>/g,'').replace(/[{}]/g,'');
-            thisCraft.discrodtext= `Change **${thisCraft.change_type}** to **${thisCraft.change_end_type}**`
-            thisCraft.discrodtext = getDiscordStringFromConfig(thisCraft.function, thisCraft.change_type, thisCraft.ilevel, thisCraft.price, thisCraft.discrodtext);
-          break;
-        case "Augment":
-            thisCraft.function ="Augment";
-            thisCraft.augment_type = formatting[1] ? formatting[1].substring(1, formatting[1].length-1) : "";
-            thisCraft.Grouptype = thisCraft.augment_type;
-            thisCraft.ilevel = craft.match(/\([0-9]*\)/g,'').toString().replace(/[()]/g,'');
-            thisCraft.price = getPriceFromConfig(thisCraft.function, thisCraft.augment_type);
-            thisCraft.lucky = craft.indexOf("Lucky")>-1 ? true : false;
-            thisCraft.text=craft;
-            thisCraft.cleanedtext= craft.replace(/\<white\>/g,'').replace(/[{}]/g,'');
-            thisCraft.discrodtext= thisCraft.lucky? `Augment **Lucky** **${thisCraft.augment_type}**` : `Augment **${thisCraft.augment_type}**`;
-            thisCraft.discrodtext = getDiscordStringFromConfig(thisCraft.function, thisCraft.augment_type, thisCraft.ilevel, thisCraft.price, thisCraft.discrodtext);
-          break;
-        default:
-            thisCraft.function = formatting[0].substring(1, formatting[0].length-1);
-            thisCraft.arguments = formatting.slice(1, formatting.length);
-            thisCraft.Grouptype = thisCraft.arguments[0];
-            thisCraft.ilevel = craft.match(/\([0-9]*\)/g,'').toString().replace(/[()]/g,'');
-            thisCraft.price = getPriceFromConfig(thisCraft.function, thisCraft.Grouptype);
-            thisCraft.lucky = craft.indexOf("Lucky")>-1 ? true : false;
-            thisCraft.text=craft;
-            thisCraft.cleanedtext= craft.replace(/\<white\>/g,'').replace(/[{}]/g,'');
-            thisCraft.discrodtext= craft.replace(/\<white\>/g,'').replace(/[{}]/g,'**').replace(/\([0-9]*\)/g,'');
-            thisCraft.discrodtext = getDiscordStringFromConfig(thisCraft.function, thisCraft.Grouptype, thisCraft.ilevel, thisCraft.price, thisCraft.discrodtext);
-    }
-    flatCraftList.push(thisCraft);
-}
-
-function getPriceFromConfig(functionType, type){
     if(config.price){
         if(config.price[functionType]){
             if(config.price[functionType][type]){
@@ -179,128 +127,190 @@ function getPriceFromConfig(functionType, type){
     }
 }
 
-function getDiscordStringFromConfig(functionType, type, ilevel, price, defaultString, lucky){
-    let discrodtext = "";
-    if(config.DiscordListInclude){
-        if(config.DiscordListInclude.hideFunctions.includes(functionType)){
-            return discrodtext;
-        }
-        if(config.DiscordListInclude.hideTypes.includes(type)){
-            return discrodtext;
-        }
-        if(config.DiscordListInclude.hideIlevleUnder > ilevel){
-            return discrodtext;
-        }
+/**
+ * groups the crafts for fileFormating
+ * @params [array of objects with array of items] hortiItems
+ * @returns JSON of crafts sorted by function and type
+ */
+function GroupCrafts_FunctionTypeLevel(hortiItems){
+    let jsonByFucntion = flatCraftList(hortiItems);
 
-        discrodtext = defaultString;
-        if(config.DiscordListInclude.ilevel == true){
-            discrodtext +=` i${ilevel}`;
-        }
-        if(config.DiscordListInclude.price == true){
-            discrodtext +=` *-${price}*`;
-        }
-        return discrodtext;
-    }
-}
+    jsonByFucntion = _.groupBy(jsonByFucntion, function(craft) {
+        return craft.function ? craft.function : "Others";
+    });
 
-
-function group(){
-    //group/sort crafts.
-    GroupsCraftList = _.groupBy(flatCraftList, 'function');
-    Object.keys(GroupsCraftList).forEach(craftType => {
-        GroupsCraftList[craftType].sort((a, b) =>  {
-            if(a.Grouptype == b.Grouptype){
-                return (a.ilevel < b.ilevel) ? 1: -1;
-            }
-            else return (a.Grouptype > b.Grouptype) ? 1 : -1
+    Object.keys(jsonByFucntion).forEach(craftType => {
+        jsonByFucntion[craftType] = _.groupBy(jsonByFucntion[craftType], function(craft) {
+            return craft.type ? craft.type : "Others";
         });
     });
 
-}
-
-function humanList(){
-    //last of all crafts
-    let humanString="";
-    Object.keys(GroupsCraftList).forEach(craftType => {
-        humanString+='\n\n'+craftType+'\n';
-        GroupsCraftList[craftType].forEach(craft => {
-            humanString+=craft.cleanedtext+'\n';
+    Object.keys(jsonByFucntion).forEach(craftType => {
+        Object.keys(jsonByFucntion[craftType]).forEach(type => {
+            jsonByFucntion[craftType][type] = _.groupBy(jsonByFucntion[craftType][type], function(craft) {
+                return craft.ilevel ? craft.ilevel : undefined;
+            });
         })
     });
-    if(humanString.length>0){
-        fs.writeFile(config.craftListPath, humanString, function (err) {
+
+    return jsonByFucntion;
+}
+
+/**
+ * returns array of all the crafts in a single array
+ * @params [array of objects with array of items] hortiItems
+ * @returns [array of all crafts]
+ */
+function flatCraftList(hortiItems){
+    let flastList=[];
+    hortiItems.map(tab=>{
+        tab.items.map(horti=>{
+            if(horti.craftedMods){
+                horti.craftedMods.map(craft=>{
+                    flastList.push(craft);
+                })
+            }
+        })
+    });
+    return flastList;
+}
+
+/**
+ * writes to craftFile
+ * @params groupedCrafts json
+ */
+function toFile(groupedCrafts){
+    let FileString="";
+    let othersText;
+    Object.keys(groupedCrafts).forEach(craftType => {
+        if(craftType != "Others"){
+        FileString+='\n\n'+craftType+'\n';
+        Object.keys(groupedCrafts[craftType]).forEach(type => {
+            let typeCount=0;
+            let text="";
+            Object.keys(groupedCrafts[craftType][type]).forEach(ilevel => { 
+                text = groupedCrafts[craftType][type][ilevel][0].craft;
+                typeCount+=groupedCrafts[craftType][type][ilevel].length;
+                FileString+=text+ ` (${ilevel}) [x${typeCount}]` + '\n';
+                typeCount=0;
+            })
+        })
+        }
+        else{
+            othersText+='\n\n'+"Others"+'\n';
+            Object.keys(groupedCrafts.Others.Others).forEach(ilevel => {
+                groupedCrafts.Others.Others[ilevel].forEach(craft => {
+                    text = craft.craft;
+                    othersText+=text+ ` (${ilevel})` + '\n';
+                })
+            })
+        }
+    });
+
+    if(config.CraftListInclude.Others===true) FileString+=othersText;
+
+    if(FileString.length>0){
+        fs.writeFile(config.craftListPath, FileString, function (err) {
             if (err) return console.log(err);
         });
     }
 }
-function discordList(){
-    let lastdiscordString="";
-    let count=1;
-    let discordString=`[HSC]  IGN: @${config.accountName}`;
-    //discord markdown and marking multiples.
 
-    //filter the empty 
-    Object.keys(GroupsCraftList).forEach(craftType => {
-        GroupsCraftList[craftType] = GroupsCraftList[craftType].filter(craft => {
-            if(craft.discrodtext) return craft;
-        });
+/**
+ * writes to discordCraftFile
+ * @params groupedCrafts json
+ */
+function toDiscordFile(groupedCrafts){
+    let DiscordFileString=`[HSC] IGN: ${config.accountName}`;
 
-        if(GroupsCraftList[craftType].length==0) delete GroupsCraftList[craftType];
-    });
-    
-    Object.keys(GroupsCraftList).forEach(craftType => {
-        if(!config.DiscordListInclude.hideFunctions.includes(craftType))discordString+='\n\n'+`**${craftType}**\n`;
-
-        GroupsCraftList[craftType].forEach(function(craft, index){
-            if(craft.discrodtext){
-                if(lastdiscordString == craft.discrodtext){
-                    count++;
-                    if(index == GroupsCraftList[craftType].length-1){
-                        discordString+=lastdiscordString;
-                        discordString+= count>1 ? ` -x${count}\n` : '\n';
-                        count=1;
+    Object.keys(groupedCrafts).forEach(craftFunction => {
+        if(!config.DiscordListInclude.hideFunctions.includes(craftFunction)){
+            if(craftFunction != "Others"){
+                DiscordFileString+='\n\n'+craftFunction+'\n';
+            Object.keys(groupedCrafts[craftFunction]).forEach(type => {
+                if(!config.DiscordListInclude.hideTypes.includes(type)){
+                    let typeCount=0;
+                    let text="";
+                    let price="";
+                    Object.keys(groupedCrafts[craftFunction][type]).forEach(ilevel => {
+                        if(config.DiscordListInclude.hideIlevleUnder<ilevel){
+                            text = groupedCrafts[craftFunction][type][ilevel][0].discordText || groupedCrafts[craftFunction][type][ilevel][0].craft;
+                            price = config.DiscordListInclude.price?groupedCrafts[craftFunction][type][ilevel][0].price:"";
+                            typeCount+=groupedCrafts[craftFunction][type][ilevel].length;
+                        }
+                    })
+                    //DiscordFileString+= typeCount>0? `${text} [x${typeCount}]` + price?`*-${price}*`:""+'\n':"";
+                    if(typeCount>0){
+                        DiscordFileString+=`${text} [x${typeCount}]`;
+                        if(price!=""){
+                            DiscordFileString+=` *-${price}*`;
+                        }
+                        DiscordFileString+='\n';
                     }
+                    typeCount=0;
                 }
-                else{
-                    if(lastdiscordString){
-                        discordString+= lastdiscordString;
-                        discordString+= count>1 ? ` -x${count}\n` : '\n';
-                    }
-
-                    if(index == GroupsCraftList[craftType].length-1){
-                        discordString+=craft.discrodtext+'\n';
-                        count=1;
-                    }
-                    count=1;
-                }
-                lastdiscordString=craft.discrodtext;
+            })
             }
             else{
-                numberOfCrafts--;
+                DiscordFileString+='\n\n'+"Others"+'\n';
+                Object.keys(groupedCrafts.Others.Others).forEach(ilevel => {
+                    groupedCrafts.Others.Others[ilevel].forEach(craft => {
+                        text = craft.craft;
+                        DiscordFileString+=text+ config.DiscordListInclude.ilevel?` (${ilevel})`:"" + '\n';
+                    })
+                })
             }
-        })
-        lastdiscordString="";
+        }
     });
-    if(discordString.length>0){
-        fs.writeFile(config.DiscordCraftListPath, discordString, function (err) {
+
+    if(DiscordFileString.length>0){
+        fs.writeFile(config.DiscordCraftListPath, DiscordFileString, function (err) {
             if (err) return console.log(err);
         });
     }
 }
 
-if (!fs.existsSync(config.DiscordCraftListPath)){
-    fs.mkdir(config.DiscordCraftListPath.substring(0,config.DiscordCraftListPath.lastIndexOf("/")+1), { recursive: true }, (err) => {
-        if (err) throw err;
-    });
+/**
+ * make the dir for the report paths in config
+ */
+function validateReportPaths(){
+    if (!fs.existsSync(config.DiscordCraftListPath)){
+        fs.mkdir(config.DiscordCraftListPath.substring(0,config.DiscordCraftListPath.lastIndexOf("/")+1), { recursive: true }, (err) => {
+            if (err) throw err;
+        });
+    }
+    
+    if (!fs.existsSync(config.craftListPath)){
+        fs.mkdir(config.craftListPath.substring(0,config.craftListPath.lastIndexOf("/")+1), { recursive: true }, (err) => {
+            if (err) throw err;
+        });
+    }
 }
 
-if (!fs.existsSync(config.craftListPath)){
-    fs.mkdir(config.craftListPath.substring(0,config.craftListPath.lastIndexOf("/")+1), { recursive: true }, (err) => {
-        if (err) throw err;
-    });
+/**
+ * fetch all tab contents, sort, format, grop, create files
+ */
+async function main(){
+    validateReportPaths();
+    let tabsContents = await fetchAllTabs();
+    //no tabs have items or api limit
+    if(failedToFetch){
+        console.log("failed to fetch Items"); 
+        return 404;
+    }
+    failedToFetch = false;
+
+    let hortiItems = fetchHortiItems(tabsContents);
+    hortiItems = formatCrafts(hortiItems);
+    let groupedCrafts = GroupCrafts_FunctionTypeLevel(hortiItems);
+    
+    toFile(groupedCrafts);
+    toDiscordFile(groupedCrafts);
+    console.log("updated", new Date().toTimeString())
 }
 
-getALLhorticraftItems();
+//run main on a 2 min interval
+main();
 setInterval(function(){
-    getALLhorticraftItems();
+    main();
 }, 120000)

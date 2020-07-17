@@ -1,0 +1,778 @@
+{
+    "Remove a random Physical modifier from an item and add a new Physical modifier":{
+        "function":"Remove > Add",
+        "type":"Physical",
+        "discordText":"Remove **Physical** add **Physical**",
+        "lucky":false
+    },
+    "Remove a random Attack modifier from an item and add a new Attack modifier":{
+        "function":"Remove > Add",
+        "type":"Attack",
+        "discordText":"Remove **Attack** add **Attack**",
+        "lucky":false
+    },
+    "Remove a random Lightning modifier from an item and add a new Lightning modifier":{
+        "function":"Remove > Add",
+        "type":"Lightning",
+        "discordText":"Remove **Lightning** add **Lightning**",
+        "lucky":false
+    },
+    "Remove a random Cold modifier from an item and add a new Cold modifier":{
+        "function":"Remove > Add",
+        "type":"Cold",
+        "discordText":"Remove **Cold** add **Cold**",
+        "lucky":false
+    },
+    "Remove a random Defence modifier from an item and add a new Defence modifier":{
+        "function":"Remove > Add",
+        "type":"Defence",
+        "discordText":"Remove **Defence** add **Defence**",
+        "lucky":false
+    },
+    "Remove a random Chaos modifier from an item and add a new Chaos modifier":{
+        "function":"Remove > Add",
+        "type":"Chaos",
+        "discordText":"Remove **Chaos** add **Chaos**",
+        "lucky":false
+    },
+    "Remove a random Life modifier from an item and add a new Life modifier":{
+        "function":"Remove > Add",
+        "type":"Life",
+        "discordText":"Remove **Life** add **Life**",
+        "lucky":false
+    },
+    "Remove a random Caster modifier from an item and add a new Caster modifier":{
+        "function":"Remove > Add",
+        "type":"Caster",
+        "discordText":"Remove **Caster** add **Caster**",
+        "lucky":false
+    },
+    "Remove a random Fire modifier from an item and add a new Fire modifier":{
+        "function":"Remove > Add",
+        "type":"Fire",
+        "discordText":"Remove **Fire** add **Fire**",
+        "lucky":false
+    },
+    "Remove a random Speed modifier from an item and add a new Speed modifier":{
+        "function":"Remove > Add",
+        "type":"Speed",
+        "discordText":"Remove **Speed** add **Speed**",
+        "lucky":false
+    },
+    "Remove a random Critical modifier from an item and add a new Critical modifier":{
+        "function":"Remove > Add",
+        "type":"Critical",
+        "discordText":"Remove **Critical** add **Critical**",
+        "lucky":false
+    },
+    "Remove a random Influence modifier from an item and add a new Influence modifier":{
+        "function":"Remove > Add",
+        "type":"Influence",
+        "discordText":"Remove **Influence** add **Influence**",
+        "lucky":false
+    },
+
+
+
+    "Remove a random Physical modifier from an item":{
+        "function":"Remove",
+        "type":"Physical",
+        "discordText":"Remove **Physical**",
+        "lucky":false
+    },
+    "Remove a random Attack modifier from an item":{
+        "function":"Remove",
+        "type":"Attack",
+        "discordText":"Remove **Attack**",
+        "lucky":false
+    },
+    "Remove a random Lightning modifier from an item":{
+        "function":"Remove",
+        "type":"Lightning",
+        "discordText":"Remove **Lightning**",
+        "lucky":false
+    },
+    "Remove a random Cold modifier from an item":{
+        "function":"Remove",
+        "type":"Cold",
+        "discordText":"Remove **Cold**",
+        "lucky":false
+    },
+    "Remove a random Defence modifier from an item":{
+        "function":"Remove",
+        "type":"Defence",
+        "discordText":"Remove **Defence**",
+        "lucky":false
+    },
+    "Remove a random Chaos modifier from an item":{
+        "function":"Remove",
+        "type":"Chaos",
+        "discordText":"Remove **Chaos**",
+        "lucky":false
+    },
+    "Remove a random Life modifier from an item":{
+        "function":"Remove",
+        "type":"Life",
+        "discordText":"Remove **Life**",
+        "lucky":false
+    },
+    "Remove a random Caster modifier from an item":{
+        "function":"Remove",
+        "type":"Caster",
+        "discordText":"Remove **Caster**",
+        "lucky":false
+    },
+    "Remove a random Fire modifier from an item":{
+        "function":"Remove",
+        "type":"Fire",
+        "discordText":"Remove **Fire**",
+        "lucky":false
+    },
+    "Remove a random Speed modifier from an item":{
+        "function":"Remove",
+        "type":"Speed",
+        "discordText":"Remove **Speed**",
+        "lucky":false
+    },
+    "Remove a random Critical modifier from an item":{
+        "function":"Remove",
+        "type":"Critical",
+        "discordText":"Remove **Critical**",
+        "lucky":false
+    },
+    "Remove a random Influence modifier from an item":{
+        "function":"Remove",
+        "type":"Influence",
+        "discordText":"Remove **Influence**",
+        "lucky":false
+    },
+
+
+
+
+
+    "Remove a random non-Physical modifier from an item and add a new Physical modifier":{
+        "function":"Remove Non > Add",
+        "type":"non-Physical",
+        "discordText":"Remove **non-Physical** add **Physical**",
+        "lucky":false
+    },
+    "Remove a random non-Attack modifier from an item and add a new Attack modifier":{
+        "function":"Remove Non > Add",
+        "type":"non-Attack",
+        "discordText":"Remove **non-Attack** add **Attack**",
+        "lucky":false
+    },
+    "Remove a random non-Lightning modifier from an item and add a new Lightning modifier":{
+        "function":"Remove Non > Add",
+        "type":"non-Lightning",
+        "discordText":"Remove **non-Lightning** add **Lightning**",
+        "lucky":false
+    },
+    "Remove a random non-Cold modifier from an item and add a new Cold modifier":{
+        "function":"Remove Non > Add",
+        "type":"non-Cold",
+        "discordText":"Remove **non-Cold** add **Cold**",
+        "lucky":false
+    },
+    "Remove a random non-Defence modifier from an item and add a new Defence modifier":{
+        "function":"Remove Non > Add",
+        "type":"non-Defence",
+        "discordText":"Remove **non-Defence** add **Defence**",
+        "lucky":false
+    },
+    "Remove a random non-Chaos modifier from an item and add a new Chaos modifier":{
+        "function":"Remove Non > Add",
+        "type":"non-Chaos",
+        "discordText":"Remove **non-Chaos** add **Chaos**",
+        "lucky":false
+    },
+    "Remove a random non-Life modifier from an item and add a new Life modifier":{
+        "function":"Remove Non > Add",
+        "type":"non-Life",
+        "discordText":"Remove **non-Life** add **Life**",
+        "lucky":false
+    },
+    "Remove a random non-Caster modifier from an item and add a new Caster modifier":{
+        "function":"Remove Non > Add",
+        "type":"non-Caster",
+        "discordText":"Remove **non-Caster** add **Caster**",
+        "lucky":false
+    },
+    "Remove a random non-Fire modifier from an item and add a new Fire modifier":{
+        "function":"Remove Non > Add",
+        "type":"non-Fire",
+        "discordText":"Remove **non-Fire** add **Fire**",
+        "lucky":false
+    },
+    "Remove a random non-Speed modifier from an item and add a new Speed modifier":{
+        "function":"Remove Non > Add",
+        "type":"non-Speed",
+        "discordText":"Remove **non-Speed** add **Speed**",
+        "lucky":false
+    },
+    "Remove a random non-Crit modifier from an item and add a new Critical modifier":{
+        "function":"Remove Non > Add",
+        "type":"non-Crit",
+        "discordText":"Remove **non-Crit** add **Crit**",
+        "lucky":false
+    },
+    "Remove a random non-Influence modifier from an item and add a new Influence modifier":{
+        "function":"Remove Non > Add",
+        "type":"non-Influence",
+        "discordText":"Remove **non-Influence** add **Influence**",
+        "lucky":false
+    },
+
+
+
+
+
+
+
+
+    "Augment a Magic or Rare item with a new Physical modifier":{
+        "function":"Augment (Normal)",
+        "type":"Physical",
+        "discordText":"Augment **Physical**",
+        "lucky":false
+    },
+    "Augment an item with a new Attack modifier":{
+        "function":"Augment (Normal)",
+        "type":"Attack",
+        "discordText":"Augment **Attack**",
+        "lucky":false
+    },
+    "Augment an item with a new Lightning modifier":{
+        "function":"Augment (Normal)",
+        "type":"Lightning",
+        "discordText":"Augment **Physical**",
+        "lucky":false
+    },
+    "Augment an item with a new Cold modifier":{
+        "function":"Augment (Normal)",
+        "type":"Cold",
+        "discordText":"Augment **Physical**",
+        "lucky":false
+    },
+    "Augment an item with a new Defence modifier":{
+        "function":"Augment (Normal)",
+        "type":"Defence",
+        "discordText":"Augment **Physical**",
+        "lucky":false
+    },
+    "Augment an item with a new Chaos modifier":{
+        "function":"Augment (Normal)",
+        "type":"Chaos",
+        "discordText":"Augment **Physical**",
+        "lucky":false
+    },
+    "Augment an item with a new Life modifier":{
+        "function":"Augment (Normal)",
+        "type":"Life",
+        "discordText":"Augment **Physical**",
+        "lucky":false
+    },
+    "Augment a Magic or Rare item with a new Caster modifier":{
+        "function":"Augment (Normal)",
+        "type":"Caster",
+        "discordText":"Augment **Physical**",
+        "lucky":false
+    },
+    "Augment a Magic or Rare item with a new Fire modifier":{
+        "function":"Augment (Normal)",
+        "type":"Fire",
+        "discordText":"Augment **Physical**",
+        "lucky":false
+    },
+    "Augment an item with a new Speed modifier":{
+        "function":"Augment (Normal)",
+        "type":"Speed",
+        "discordText":"Augment **Physical**",
+        "lucky":false
+    },
+    "Augment an item with a new Critical modifier":{
+        "function":"Augment (Normal)",
+        "type":"Critical",
+        "discordText":"Augment **Physical**",
+        "lucky":false
+    },
+    "Augment an item with a new Influence modifier":{
+        "function":"Augment (Normal)",
+        "type":"Influence",
+        "discordText":"Augment **Physical**",
+        "lucky":false
+    },
+
+
+    "Augment a Magic or Rare item with a new Physical modifier with Lucky values":{
+        "function":"Augment (Lucky)",
+        "type":"Physical",
+        "discordText":"Augment (Lucky) **Physical**",
+        "lucky":true
+    },
+    "Augment an item with a new Attack modifier with Lucky values":{
+        "function":"Augment (Lucky)",
+        "type":"Attack",
+        "discordText":"Augment (Lucky) **Attack**",
+        "lucky":true
+    },
+    "Augment an item with a new Lightning modifier with Lucky values":{
+        "function":"Augment (Lucky)",
+        "type":"Lightning",
+        "discordText":"Augment (Lucky) **Lightning**",
+        "lucky":true
+    },
+    "Augment an item with a new Cold modifier with Lucky values":{
+        "function":"Augment (Lucky)",
+        "type":"Cold",
+        "discordText":"Augment (Lucky) **Cold**",
+        "lucky":true
+    },
+    "Augment an item with a new Defence modifier with Lucky values":{
+        "function":"Augment (Lucky)",
+        "type":"Defence",
+        "discordText":"Augment (Lucky) **Defence**",
+        "lucky":true
+    },
+    "Augment an item with a new Chaos modifier with Lucky values":{
+        "function":"Augment (Lucky)",
+        "type":"Chaos",
+        "discordText":"Augment (Lucky) **Chaos**",
+        "lucky":true
+    },
+    "Augment an item with a new Life modifier with Lucky values":{
+        "function":"Augment (Lucky)",
+        "type":"Life",
+        "discordText":"Augment (Lucky) **Life**",
+        "lucky":true
+    },
+    "Augment a Magic or Rare item with a new Caster modifier with Lucky values":{
+        "function":"Augment (Lucky)",
+        "type":"Caster",
+        "discordText":"Augment (Lucky) **Caster**",
+        "lucky":true
+    },
+    "Augment a Magic or Rare item with a new Fire modifier with Lucky values":{
+        "function":"Augment (Lucky)",
+        "type":"Fire",
+        "discordText":"Augment (Lucky) **Fire**",
+        "lucky":true
+    },
+    "Augment an item with a new Speed modifier with Lucky values":{
+        "function":"Augment (Lucky)",
+        "type":"Speed",
+        "discordText":"Augment (Lucky) **Speed**",
+        "lucky":true
+    },
+    "Augment an item with a new Critical modifier with lucky values":{
+        "function":"Augment (Lucky)",
+        "type":"Critical",
+        "discordText":"Augment (Lucky) **Critical**",
+        "lucky":true
+    },
+    "Augment an item with a new Influence modifier with Lucky values":{
+        "function":"Augment (Lucky)",
+        "type":"Influence",
+        "discordText":"Augment (Lucky) **Influence**",
+        "lucky":true
+    },
+
+
+
+
+    "Randomise the numeric values of the random Physical modifiers on a Magic or Rare item":{
+        "function":"Randomise",
+        "type":"Physical",
+        "discordText":"Randomise **Physical**",
+        "lucky":false
+    },
+    "Randomise the numeric values of the random Attack modifiers on a Magic or Rare item":{
+        "function":"Randomise",
+        "type":"Attack",
+        "discordText":"Randomise **Attack**",
+        "lucky":false
+    },
+    "Randomise the numeric values of the random Lightning modifiers on a Magic or Rare item":{
+        "function":"Randomise",
+        "type":"Lightning",
+        "discordText":"Randomise **Lightning**",
+        "lucky":false
+    },
+    "Randomise the numeric values of the random Cold modifiers on a Magic or Rare item":{
+        "function":"Randomise",
+        "type":"Cold",
+        "discordText":"Randomise **Cold**",
+        "lucky":false
+    },
+    "Randomise the numeric values of the random Defence modifiers on a Magic or Rare item":{
+        "function":"Randomise",
+        "type":"Defence",
+        "discordText":"Randomise **Defence**",
+        "lucky":false
+    },
+    "Randomise the numeric values of the random Chaos modifiers on a Magic or Rare item":{
+        "function":"Randomise",
+        "type":"Chaos",
+        "discordText":"Randomise **Chaos**",
+        "lucky":false
+    },
+    "Randomise the numeric values of the random Life modifiers on a Magic or Rare item":{
+        "function":"Randomise",
+        "type":"Life",
+        "discordText":"Randomise **Life**",
+        "lucky":false
+    },
+    "Randomise the numeric values of the random Caster modifiers on a Magic or Rare item":{
+        "function":"Randomise",
+        "type":"Caster",
+        "discordText":"Randomise **Caster**",
+        "lucky":false
+    },
+    "Randomise the numeric values of the random Fire modifiers on a Magic or Rare item":{
+        "function":"Randomise",
+        "type":"Fire",
+        "discordText":"Randomise **Fire**",
+        "lucky":false
+    },
+    "Randomise the numeric values of the random Speed modifiers on a Magic or Rare item":{
+        "function":"Randomise",
+        "type":"Speed",
+        "discordText":"Randomise **Speed**",
+        "lucky":false
+    },
+    "Randomise the numeric values of the random Critical modifiers on a Magic or Rare item":{
+        "function":"Randomise",
+        "type":"Critical",
+        "discordText":"Randomise **Critical**",
+        "lucky":false
+    },
+    "Randomise the numeric values of the random Influence modifiers on a Magic or Rare item":{
+        "function":"Randomise",
+        "type":"Influence",
+        "discordText":"Randomise **Influence**",
+        "lucky":false
+    },
+
+
+
+    "Change a modifier that grants Fire Resistance into a similar-tier modifier that grants Cold Resistance":{
+        "function":"Change Resist",
+        "type":"Fire to Cold",
+        "discordText":"Change **Fire** Resist to **Cold** Resist",
+        "lucky":false
+    },
+    "Change a modifier that grants Fire Resistance into a similar-tier modifier that grants Lightning Resistance":{
+        "function":"Change Resist",
+        "type":"Fire to Lightning",
+        "discordText":"Change **Fire** Resist to **Lightning** Resist",
+        "lucky":false
+    },
+    "Change a modifier that grants Cold Resistance into a similar-tier modifier that grants Fire Resistance":{
+        "function":"Change Resist",
+        "type":"Cold to Fire",
+        "discordText":"Change **Cold** Resist to **Fire** Resist",
+        "lucky":false
+    },
+    "Change a modifier that grants Cold Resistance into a similar-tier modifier that grants Lightning Resistance":{
+        "function":"Change Resist",
+        "type":"Cold to Lightning",
+        "discordText":"Change **Cold** Resist to **Lightning** Resist",
+        "lucky":false
+    },
+    "Change a modifier that grants Lightning Resistance into a similar-tier modifier that grants Fire Resistance":{
+        "function":"Change Resist",
+        "type":"Lightning to Fire",
+        "discordText":"Change **Lightning** Resist to **Fire** Resist",
+        "lucky":false
+    },
+    "Change a modifier that grants Lightning Resistance into a similar-tier modifier that grants Cold Resistance":{
+        "function":"Change Resist",
+        "type":"Lightning to Cold",
+        "discordText":"Change **Lightning** Resist to **Cold** Resist",
+        "lucky":false
+    },
+
+
+
+
+    "Reforge the number of sockets on an item 10 times, using the outcome with the greatest number of sockets":{
+        "function":"Sockets",
+        "type":"10 times",
+        "discordText":"Reforge **number** of sockets **10 times**",
+        "lucky":false
+    },
+    "Set an item to six sockets":{
+        "function":"Sockets",
+        "type":"six",
+        "discordText":"Set an item to **six** sockets",
+        "lucky":false
+    },
+    "Set an item to five sockets":{
+        "function":"Sockets",
+        "type":"five",
+        "discordText":"Set an item to **five** sockets",
+        "lucky":false
+    },
+    "Set an item to four sockets":{
+        "function":"Sockets",
+        "type":"four",
+        "discordText":"Set an item to **four** sockets",
+        "lucky":false
+    },
+    "Set an item to three sockets":{
+        "function":"Sockets",
+        "type":"three",
+        "discordText":"Set an item to **three** sockets",
+        "lucky":false
+    },
+
+
+
+    "Reforge the colours of sockets on an item 10 times, using the outcome with the greatest number of less-common socket colours":{
+        "function":"Socket Colors",
+        "type":"10 times",
+        "discordText":"Reforge **colours** of sockets **10 times**",
+        "lucky":false
+    },
+    "Reforge the colour of a random socket on an item, turning it White":{
+        "function":"Socket Colors",
+        "type":"random white",
+        "discordText":"Reforge **random** socket to **white**",
+        "lucky":false
+    },
+    "Reforge the colour of a non-white socket on an item, turning it White":{
+        "function":"Socket Colors",
+        "type":"non-white",
+        "discordText":"Reforge **non-white** socket to **white**",
+        "lucky":false
+    },
+    "Reforge the colour of a non-Blue socket on an item, turning it Blue":{
+        "function":"Socket Colors",
+        "type":"non-Blue",
+        "discordText":"Reforge **non-Blue** socket to **Blue**",
+        "lucky":false
+    },
+    "Reforge the colour of a non-Green socket on an item, turning it Green":{
+        "function":"Socket Colors",
+        "type":"non-Green",
+        "discordText":"Reforge **non-Green** socket to **Green**",
+        "lucky":false
+    },
+    "Reforge the colour of a non-Red socket on an item, turning it Red":{
+        "function":"Socket Colors",
+        "type":"non-Red",
+        "discordText":"Reforge **non-Red** socket to **Red**",
+        "lucky":false
+    },
+    "Reforge the colour of three random sockets on an item, turning them Red, Green and Blue":{
+        "function":"Socket Colors",
+        "type":"three random",
+        "discordText":"Reforge **three random** socket to **Red, Green, and Blue**",
+        "lucky":false
+    },
+    "Reforge the colour of two random sockets on an item, turning them Blue and Green":{
+        "function":"Socket Colors",
+        "type":"two random no Red",
+        "discordText":"Reforge **two random** socket to **Blue and Green**",
+        "lucky":false
+    },
+    "Reforge the colour of two random sockets on an item, turning them Red and Blue":{
+        "function":"Socket Colors",
+        "type":"two random to Green",
+        "discordText":"Reforge **two random** socket to **Red and Blue**",
+        "lucky":false
+    },
+    "Reforge the colour of two random sockets on an item, turning them Red and Green":{
+        "function":"Socket Colors",
+        "type":"two random to Blue",
+        "discordText":"Reforge **two random** socket to **Red and Green**",
+        "lucky":false
+    },
+
+
+    "Reforge the links between sockets on an item 10 times, using the outcome with the greatest number of linked sockets":{
+        "function":"Socket Links",
+        "type":"10 times",
+        "discordText":"Reforge **links 10 times**",
+        "lucky":false
+    },
+    "Reforge the links between sockets on an item, linking six sockets":{
+        "function":"Socket Links",
+        "type":"six",
+        "discordText":"**six link**",
+        "lucky":false
+    },
+    "Reforge the links between sockets on an item, linking five sockets":{
+        "function":"Socket Links",
+        "type":"five",
+        "discordText":"**five link**",
+        "lucky":false
+    },
+    "Reforge the links between sockets on an item, linking four sockets":{
+        "function":"Socket Links",
+        "type":"four",
+        "discordText":"**four link**",
+        "lucky":false
+    },
+    "Reforge the links between sockets on an item, linking three sockets":{
+        "function":"Socket Links",
+        "type":"three",
+        "discordText":"**three link**",
+        "lucky":false
+    },
+
+
+
+    "Add a random Influence to a Normal, Magic or Rare Weapon that isn't influenced":{
+        "function":"Influence",
+        "type":"Weapon",
+        "discordText":"Add **influence** to **non-influence Weapon**",
+        "lucky":false
+    },
+    "Add a random Influence to Normal, Magic or Rare Armour that isn't influenced":{
+        "function":"Influence",
+        "type":"Armour",
+        "discordText":"Add **influence** to **non-influence Armour**",
+        "lucky":false
+    },
+    "Add a random Influence to Normal, Magic or Rare Jewellery that isn't influenced":{
+        "function":"Influence",
+        "type":"Jewellery",
+        "discordText":"Add **influence** to **non-influence Jewellery**",
+        "lucky":false
+    },
+
+
+
+    "Fracture a random modifier on an item with at least 5 modifiers, locking it in place":{
+        "function":"Fracture",
+        "type":"5",
+        "discordText":"Fracture **random** with at least **5** modifiers",
+        "lucky":false
+    },
+    "Fracture a random Suffix on an item with least 3 Suffixes":{
+        "function":"Fracture",
+        "type":"Suffix",
+        "discordText":"Fracture **Suffix** with **3 Suffixes**",
+        "lucky":false
+    },
+    "Fracture a random Prefix on an item with at least 3 Prefixes":{
+        "function":"Fracture",
+        "type":"Prefix",
+        "discordText":"Fracture **Prefix** with **3 Prefixes**",
+        "lucky":false
+    },
+
+
+    "Set a new Implicit modifier on a Cobalt, Crimson, Viridian or Prismatic Jewel":{
+        "function":"Implicit",
+        "type":"Cobalt",
+        "discordText":"Implicit on a **Cobalt, Crimson, Viridian or Prismatic** Jewel",
+        "lucky":false
+    },
+    "Set a new Implicit modifier on an Abyss Jewel or Timeless Jewel":{
+        "function":"Implicit",
+        "type":"Abyss",
+        "discordText":"Implicit on an **Abyss** Jewel or **Timeless** Jewel",
+        "lucky":false
+    },
+    "Set a new Implicit modifier on a Cluster Jewel":{
+        "function":"Implicit",
+        "type":"Cluster",
+        "discordText":"Implicit on a **Cluster** Jewel",
+        "lucky":false
+    },
+
+
+
+
+    "Synthesise an item, giving random Synthesised implicits":{
+        "function":"Synthesise",
+        "type":"Synthesise",
+        "discordText":"Synthesise an item",
+        "lucky":false
+    },
+
+
+    "Reforge a Rare item, keeping all Prefixes":{
+        "function":"Reforge",
+        "type":"Prefixes",
+        "discordText":"Reforge keeping all **Prefixes**",
+        "lucky":false
+    },
+    "Reforge a Rare item with Lucky modifier values, keeping all Prefixes":{
+        "function":"Reforge",
+        "type":"Prefixes",
+        "discordText":"Reforge **lucly** keeping all **Prefixes**",
+        "lucky":true
+    },
+    "Reforge a Rare item, keeping all Suffixes":{
+        "function":"Reforge",
+        "type":"Suffixes",
+        "discordText":"Reforge keeping all **Suffixes**",
+        "lucky":false
+    },
+    "Reforge a Rare item with Lucky modifier values, keeping all Suffixes":{
+        "function":"Reforge",
+        "type":"Suffixes",
+        "discordText":"Reforge **lucky** keeping all **Suffixes**",
+        "lucky":true
+    },
+
+
+    "Reroll the values of Prefix, Suffix and Implicit modifiers on a Rare item, with Lucky modifier values":{
+        "function":"Reroll",
+        "type":"all",
+        "discordText":"Reroll **all** values with **lucky** values",
+        "lucky":true
+    },
+    "Reroll the values of Prefix modifiers on a Magic or Rare item, with Lucky modifier values":{
+        "function":"Reroll",
+        "type":"Prefix",
+        "discordText":"Reroll **Prefix** values with **lucky** values",
+        "lucky":true
+    },
+    "Reroll the values of Suffix modifiers on a Magic or Rare item, with Lucky modifier values":{
+        "function":"Reroll",
+        "type":"Suffix",
+        "discordText":"Reroll **Suffix** values with **lucky** values",
+        "lucky":true
+    },
+    "Reroll the Prefixes on a Rare item, with Lucky modifier values":{
+        "function":"Reroll",
+        "type":"Prefixes",
+        "discordText":"Reroll **Prefixes** values with **lucky** values",
+        "lucky":true
+    },
+    "Reroll the Suffixes on a Rare item, with Lucky modifier values":{
+        "function":"Reroll",
+        "type":"Suffixes",
+        "discordText":"Reroll **Suffixes** values with **lucky** values",
+        "lucky":true
+    },
+    "Reroll a Rare item, keeping all Prefixes":{
+        "function":"Reroll",
+        "type":"Prefixes",
+        "discordText":"Reroll **Prefixes** values",
+        "lucky":false
+    },
+    "Reroll a Rare item, keeping all Suffixes":{
+        "function":"Reroll",
+        "type":"Suffixes",
+        "discordText":"Reroll **Suffixes** values",
+        "lucky":false
+    },
+    "Reroll a Rare item, being much less likely to receive the same modifier types":{
+        "function":"Reroll",
+        "type":"less",
+        "discordText":"Reroll where **less** likely to receive the same modifier",
+        "lucky":false
+    },
+    "Reroll a Rare item, being much more likely to receive the same modifier types":{
+        "function":"Reroll",
+        "type":"more",
+        "discordText":"Reroll where **more** likely to receive the same modifier",
+        "lucky":false
+    }
+}

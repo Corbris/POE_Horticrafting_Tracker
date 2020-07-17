@@ -1,34 +1,77 @@
-[HSC]  IGN: @Corbris
-
-**Remove**
-Remove **Attack** i83 *-40c* -x2
-Remove **Attack** i79 *-40c*
-Remove **Attack** i78 *-40c*
-Remove **Caster** i82 *-40c*
-Remove **Chaos** i82 *-60c*
-Remove **Cold** i83 *-40c* -x2
-Remove **Life** i83 *-50c*
-Remove **Life** i82 *-50c*
 
 
-**Remove/Add**
-Remove **Attack** add **Attack** i83 *-50c*
-Remove **Attack** add **Attack** i82 *-50c*
-Remove **Attack** add **Attack** i81 *-50c*
-Remove **Caster** add **Caster** i82 *-50c*
-Remove **Chaos** add **Chaos** i83 *-70c* -x3
-Remove **Chaos** add **Chaos** i81 *-70c* -x2
-Remove **Cold** add **Cold** i82 *-60c*
-Remove **Critical** add **Critical** i80 *-50c*
+Randomise
+Randomise **Defence** [x35]
+Randomise **Fire** [x4]
+Randomise **Life** [x30]
+Randomise **Critical** [x2]
+Randomise **Lightning** [x18]
+Randomise **Attack** [x11]
+Randomise **Physical** [x20]
+Randomise **Caster** [x8]
+Randomise **Cold** [x11]
+Randomise **Chaos** [x3]
 
 
-**Augment**
-Augment **Attack** i83 *-50c*
-Augment **Attack** i81 *-50c*
-Augment **Chaos** i82 *-90c*
-Augment **Chaos** i78 *-90c*
-Augment **Lucky** **Physical** i82 *-50c*
+Remove
+Remove **Cold** [x8]
+Remove **Lightning** [x7]
+Remove **Chaos** [x3]
+Remove **Caster** [x3]
+Remove **Fire** [x6]
+Remove **Physical** [x5]
+Remove **Defence** [x2]
+Remove **Life** [x1]
+Remove **Attack** [x1]
 
 
-**Change**
-Change **Lightning** to **Fire** i81 *-40c*
+Remove Non > Add
+Remove **non-Caster** add **Caster** [x6]
+
+
+Change Resist
+Change **Fire** Resist to **Lightning** Resist [x2]
+Change **Lightning** Resist to **Fire** Resist [x4]
+Change **Lightning** Resist to **Cold** Resist [x2]
+Change **Cold** Resist to **Fire** Resist [x1]
+Change **Fire** Resist to **Cold** Resist [x2]
+
+
+Influence
+Add **influence** to **non-influence Weapon** [x1]
+
+
+Remove > Add
+Remove **Caster** add **Caster** [x1]
+Remove **Physical** add **Physical** [x1]
+Remove **Attack** add **Attack** [x2]
+Remove **Fire** add **Fire** [x1]
+Remove **Defence** add **Defence** [x3]
+Remove **Cold** add **Cold** [x4]
+
+
+Augment (Lucky)
+Augment (Lucky) **Lightning** [x2]
+Augment (Lucky) **Attack** [x2]
+Augment (Lucky) **Physical** [x1]
+Augment (Lucky) **Defence** [x1]
+
+
+Augment (Normal)
+Augment **Attack** [x3]
+Augment **Physical** [x2]
+Augment **Physical** [x4]
+Augment **Physical** [x1]
+Augment **Physical** [x1]
+Augment **Physical** [x1]
+
+
+Reroll
+Reroll **Prefix** values with **lucky** values [x1]
+Reroll **Suffix** values with **lucky** values [x3]
+
+
+Implicit
+Implicit on an **Abyss** Jewel or **Timeless** Jewel [x12]
+Implicit on a **Cobalt, Crimson, Viridian or Prismatic** Jewel [x5]
+Implicit on a **Cluster** Jewel [x2]

@@ -1,14 +1,8 @@
 {
   "name": "poe_horticrafting_tracker",
   "version": "1.0.0",
-  "description": "Will scan your stash every 30 seconds finding all Horticrafting Station's and their crafts. Will format into a file for records and a file formatted for discord trading.\r This uses node and can only be ran from CLI at this point.",
-  "main": "POE_Horticrafting_Tracker.js",
-  "bin": "POE_Horticrafting_Tracker.js",
-  "dependencies": {
-    "lodash": "^4.17.15",
-    "moment": "^2.27.0"
-  },
-  "devDependencies": {},
+  "description": "Will scan your stash every 30 seconds finding all Horticrafting Station's and their crafts. Will format into a file for records and a file formatted for discord trading.",
+  "main": "POE_GUI.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,10 +10,14 @@
     "type": "git",
     "url": "git+https://github.com/Corbris/POE_Horticrafting_Tracker.git"
   },
-  "author": "Corbris",
-  "license": "MIT",
+  "author": "",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/Corbris/POE_Horticrafting_Tracker/issues"
   },
-  "homepage": "https://github.com/Corbris/POE_Horticrafting_Tracker#readme"
+  "homepage": "https://github.com/Corbris/POE_Horticrafting_Tracker#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "lodash": "^4.17.19"
+  }
 }
