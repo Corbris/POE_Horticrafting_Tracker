@@ -1,6 +1,7 @@
 
+
 # POE_Horticrafting_Tracker
-Will scan your stash every 30 seconds finding all Horticrafting Station's and their crafts. Will format into a file for records and a file formatted for discord trading.
+Will scan your stash every 120 seconds finding all Horticrafting Station's and their crafts. Will format into a file for records and a file formatted for discord trading. 
 
 [Expected list of crafts](https://github.com/Corbris/POE_Horticrafting_Tracker/blob/master/REPORTS/CraftList.txt)
 
@@ -19,39 +20,42 @@ You can change the path of the report files to anywhere on your pc. Keep in mind
 
 
 # Customise your config
-DiscordListInclude->hideFunctions input the functions that you dont want to show in the discord formated file, ex ["Reforge","Randomise","Sacrifice"]
+`DiscordListInclude->hideFunctions` input the functions that you dont want to show in the discord formated file, ex `["Reforge","Randomise","Sacrifice"]`
 
-DiscordListInclude->hideTypes input the types that you dont want to show in the discord formated file \, ex["non-Cold","non-Fire", "non-Lightning"]
+`DiscordListInclude->hideTypes` input the types that you dont want to show in the discord formated file, ex  `["non-Cold","non-Fire", "non-Lightning"]`
 
-DiscordListInclude->hideTypes hide all crafts the the discord format taht are under this ilevel
+`DiscordListInclude->hideTypes` hide all crafts the the discord format taht are under this ilevel
 
-DiscordListInclude->price true or false value if you want price to show in the discord formated file
+`DiscordListInclude->price` true or false value if you want price to show in the discord formatted file
 
-DiscordListInclude->ilevel true or false value if you want the ilevel to show in the discord formated file
+price->defaults will be the used value if the function type is not defined. This also goes for the defaults inside the function block. So if reforge is not defined inside it will use the default price. If life is not defined inside the defined Remove function then it will use the default defined inside Remove.
 
+You can add and remove any function/type definitions
 
-price-> defaults will be the used value if the function type is not defined. This also goes for the defaults inside the function blokc. So if reforge is not defined inside it will use the default price. If life is not defined inside the defined Remove function then it will use the default defined inside Remove.
+# crafts.json
+Some random crafts are not defined in the crafts.json If the craft is not found then it will fall under the "Others" category.
 
-You can add and remove any funtion/type definitions
+You can add/update/remove any crafts to the crafts.json file. The function and type is what the price list will reference in the config.json So you can define new crafts into the crafts.json and add a price to them via the function and type properties. 
+
 
 # How to run
-Run the cexecutable in the project folder for your os.
+Run the executable in the project folder for your os.
 
-this will fetch your stash every 30 seconds and create an organized text list of all your different harvest crafts
+this will fetch your stash every 120 seconds and create an organized text list of all your different harvest crafts
 
 leave this bash window open as long as you want to be updated the files.
 
 close by ctrl-c or just closing the window
 
-Using a texteditor suck as notePadd++ will allow you to leave the file open and refresh on change.
+Using a text editor such as notePadd++ will allow you to leave the file open and refresh on change.
 
 
 # ToDo
 ~~Improve the install and run procedure.~~ Done in v1.0.0 release
 
-The API calls could be in Parallel.
+~~The API calls could be in Parallel.~~ Done in v2.0.0
 
-Better formatting, and more options via config.
+Better formatting, and more options via config. 
 
-Would be nice to see the stash and position.
+Would be nice to see the stash and position. 
 
