@@ -1,77 +1,77 @@
-
+[HSC] IGN: Corbris
 
 Randomise
-Randomise **Defence** [x35]
-Randomise **Fire** [x4]
-Randomise **Life** [x30]
-Randomise **Critical** [x2]
-Randomise **Lightning** [x18]
-Randomise **Attack** [x11]
-Randomise **Physical** [x20]
-Randomise **Caster** [x8]
-Randomise **Cold** [x11]
-Randomise **Chaos** [x3]
+Randomise **Defence** [x35] *-40c*
+Randomise **Fire** [x4] *-40c*
+Randomise **Life** [x30] *-50c*
+Randomise **Critical** [x2] *-60c*
+Randomise **Lightning** [x18] *-40c*
+Randomise **Attack** [x11] *-40c*
+Randomise **Physical** [x20] *-40c*
+Randomise **Caster** [x8] *-40c*
+Randomise **Cold** [x11] *-40c*
+Randomise **Chaos** [x3] *-60c*
 
 
 Remove
-Remove **Cold** [x8]
-Remove **Lightning** [x7]
-Remove **Chaos** [x3]
-Remove **Caster** [x3]
-Remove **Fire** [x6]
-Remove **Physical** [x5]
-Remove **Defence** [x2]
-Remove **Life** [x1]
-Remove **Attack** [x1]
+Remove **Cold** [x8] *-40c*
+Remove **Lightning** [x7] *-40c*
+Remove **Chaos** [x3] *-60c*
+Remove **Caster** [x3] *-40c*
+Remove **Fire** [x6] *-40c*
+Remove **Physical** [x5] *-40c*
+Remove **Defence** [x2] *-40c*
+Remove **Life** [x1] *-50c*
+Remove **Attack** [x1] *-40c*
 
 
 Remove Non > Add
-Remove **non-Caster** add **Caster** [x6]
+Remove **non-Caster** add **Caster** [x6] *-60c*
 
 
 Change Resist
-Change **Fire** Resist to **Lightning** Resist [x2]
-Change **Lightning** Resist to **Fire** Resist [x4]
-Change **Lightning** Resist to **Cold** Resist [x2]
-Change **Cold** Resist to **Fire** Resist [x1]
-Change **Fire** Resist to **Cold** Resist [x2]
+Change **Fire** Resist to **Lightning** Resist [x2] *-40c*
+Change **Lightning** Resist to **Fire** Resist [x4] *-40c*
+Change **Lightning** Resist to **Cold** Resist [x2] *-40c*
+Change **Cold** Resist to **Fire** Resist [x1] *-40c*
+Change **Fire** Resist to **Cold** Resist [x2] *-40c*
 
 
 Influence
-Add **influence** to **non-influence Weapon** [x1]
+Add **influence** to **non-influence Weapon** [x1] *-70c*
 
 
 Remove > Add
-Remove **Caster** add **Caster** [x1]
-Remove **Physical** add **Physical** [x1]
-Remove **Attack** add **Attack** [x2]
-Remove **Fire** add **Fire** [x1]
-Remove **Defence** add **Defence** [x3]
-Remove **Cold** add **Cold** [x4]
+Remove **Caster** add **Caster** [x1] *-50c*
+Remove **Physical** add **Physical** [x1] *-50c*
+Remove **Attack** add **Attack** [x2] *-50c*
+Remove **Fire** add **Fire** [x1] *-60c*
+Remove **Defence** add **Defence** [x3] *-50c*
+Remove **Cold** add **Cold** [x4] *-60c*
 
 
 Augment (Lucky)
-Augment (Lucky) **Lightning** [x2]
-Augment (Lucky) **Attack** [x2]
-Augment (Lucky) **Physical** [x1]
-Augment (Lucky) **Defence** [x1]
+Augment (Lucky) **Lightning** [x2] *-50c*
+Augment (Lucky) **Attack** [x2] *-50c*
+Augment (Lucky) **Physical** [x1] *-50c*
+Augment (Lucky) **Defence** [x1] *-50c*
 
 
 Augment (Normal)
-Augment **Attack** [x3]
-Augment **Physical** [x2]
-Augment **Physical** [x4]
-Augment **Physical** [x1]
-Augment **Physical** [x1]
-Augment **Physical** [x1]
+Augment **Attack** [x3] *-50c*
+Augment **Physical** [x2] *-50c*
+Augment **Physical** [x4] *-50c*
+Augment **Physical** [x1] *-50c*
+Augment **Physical** [x1] *-50c*
+Augment **Physical** [x1] *-50c*
 
 
 Reroll
-Reroll **Prefix** values with **lucky** values [x1]
-Reroll **Suffix** values with **lucky** values [x3]
+Reroll **Prefix** values with **lucky** values [x1] *-30c*
+Reroll **Suffix** values with **lucky** values [x3] *-30c*
 
 
 Implicit
-Implicit on an **Abyss** Jewel or **Timeless** Jewel [x12]
-Implicit on a **Cobalt, Crimson, Viridian or Prismatic** Jewel [x5]
-Implicit on a **Cluster** Jewel [x2]
+Implicit on an **Abyss** Jewel or **Timeless** Jewel [x12] *-50c*
+Implicit on a **Cobalt, Crimson, Viridian or Prismatic** Jewel [x5] *-70c*
+Implicit on a **Cluster** Jewel [x2] *-50c*
