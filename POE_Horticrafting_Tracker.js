@@ -2,8 +2,12 @@ const axios = require('axios');
 const _ = require('lodash');
 const fs = require('fs');
 
-const config = require('./config.json')
-const craftsList = require('./crafts.json')
+//const config = require('./config.json')
+let RAWconfig = fs.readFileSync('./config.json');
+const config = JSON.parse(RAWconfig);
+//const craftsList = require('./crafts.json')
+let RAWcraftsList = fs.readFileSync('./crafts.json');
+const craftsList = JSON.parse(RAWcraftsList);
 
 let failedToFetch = false;
 /**
