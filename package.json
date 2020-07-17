@@ -1,8 +1,9 @@
 {
   "name": "poe_horticrafting_tracker",
-  "version": "1.0.0",
-  "description": "Will scan your stash every 30 seconds finding all Horticrafting Station's and their crafts. Will format into a file for records and a file formatted for discord trading.",
-  "main": "POE_GUI.js",
+  "version": "2.0.0",
+  "description": "Will scan your stash every 120 seconds finding all Horticrafting Station's and their crafts. Will format into a file for records and a file formatted for discord trading.",
+  "main": "POE_Horticrafting_Tracker.js",
+  "bin": "POE_Horticrafting_Tracker.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
