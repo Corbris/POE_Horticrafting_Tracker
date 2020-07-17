@@ -246,61 +246,61 @@
     "Augment an item with a new Lightning modifier":{
         "function":"Augment (Normal)",
         "type":"Lightning",
-        "discordText":"Augment **Physical**",
+        "discordText":"Augment **Lightning**",
         "lucky":false
     },
     "Augment an item with a new Cold modifier":{
         "function":"Augment (Normal)",
         "type":"Cold",
-        "discordText":"Augment **Physical**",
+        "discordText":"Augment **Cold**",
         "lucky":false
     },
     "Augment an item with a new Defence modifier":{
         "function":"Augment (Normal)",
         "type":"Defence",
-        "discordText":"Augment **Physical**",
+        "discordText":"Augment **Defence**",
         "lucky":false
     },
     "Augment an item with a new Chaos modifier":{
         "function":"Augment (Normal)",
         "type":"Chaos",
-        "discordText":"Augment **Physical**",
+        "discordText":"Augment **Chaos**",
         "lucky":false
     },
     "Augment an item with a new Life modifier":{
         "function":"Augment (Normal)",
         "type":"Life",
-        "discordText":"Augment **Physical**",
+        "discordText":"Augment **Life**",
         "lucky":false
     },
     "Augment a Magic or Rare item with a new Caster modifier":{
         "function":"Augment (Normal)",
         "type":"Caster",
-        "discordText":"Augment **Physical**",
+        "discordText":"Augment **Caster**",
         "lucky":false
     },
     "Augment a Magic or Rare item with a new Fire modifier":{
         "function":"Augment (Normal)",
         "type":"Fire",
-        "discordText":"Augment **Physical**",
+        "discordText":"Augment **Fire**",
         "lucky":false
     },
     "Augment an item with a new Speed modifier":{
         "function":"Augment (Normal)",
         "type":"Speed",
-        "discordText":"Augment **Physical**",
+        "discordText":"Augment **Speed**",
         "lucky":false
     },
     "Augment an item with a new Critical modifier":{
         "function":"Augment (Normal)",
         "type":"Critical",
-        "discordText":"Augment **Physical**",
+        "discordText":"Augment **Critical**",
         "lucky":false
     },
     "Augment an item with a new Influence modifier":{
         "function":"Augment (Normal)",
         "type":"Influence",
-        "discordText":"Augment **Physical**",
+        "discordText":"Augment **Influence**",
         "lucky":false
     },
 
