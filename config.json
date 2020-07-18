@@ -3,6 +3,10 @@
 "POESESSID": "xxxxxxx_POESESSID_xxxxxxxxxx",
 "craftListPath":"./REPORTS/CraftList.txt",
 "DiscordCraftListPath":"./REPORTS/CraftList_Discord.txt",
+"tabIndexToSearch":[],
+"tabNameToSearch": [],
+"API_limit_Delay_ms": 1400,
+"updateRate_ms": 120000,
 "CraftListInclude":{
     "Others":true
 },

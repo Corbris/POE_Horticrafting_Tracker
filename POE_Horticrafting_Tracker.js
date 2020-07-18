@@ -25,8 +25,6 @@ async function getTabList(){
         console.log("ERROR:", err);
     });
 
-    //return ((numberOfTabs || {}).data || {}.numTabs) ? numberOfTabs.data.numTabs : 0;
-
     return ((numberOfTabs || {}).data || {}).tabs ? numberOfTabs.data.tabs.map((value, index) => value.n):0;
 }
 /**
@@ -34,8 +32,8 @@ async function getTabList(){
  * @param {int} tabIndex 
  * @returns {tab object}
  */
-async function getTabItems(tabIndex){
-    console.log("Fetching tab ", tabIndex);
+async function getTabItems(tabIndex, tabName){
+    console.log("Fetching tab", tabIndex, tabName);
     const tabContents = await axios.get(
         `https://www.pathofexile.com/character-window/get-stash-items?league=Harvest&tabs=1&tabIndex=${tabIndex}&accountName=${config.accountName}`,
         { headers: { Cookie: `POESESSID=${config.POESESSID}` } },
@@ -45,7 +43,7 @@ async function getTabItems(tabIndex){
         failedToFetch = true;
         console.log("ERROR:", err);
     });
-    return ((tabContents || {}).data || {}).items || {};
+    return ((tabContents || {}).data || {}).items || [];
 }
 
 /**
@@ -57,11 +55,25 @@ async function fetchAllTabs() {
     if(tabList<1) return [];
 
     // Fetch all tabs in parallel
-    const tabsContents = await Promise.all(tabList.map((val, index) => getTabItems(index)));
+    const tabsContents = await Promise.all(tabList.map(async (val, index) => {
+        if(config.tabIndexToSearch.length>0 || config.tabNameToSearch.length>0){
+            if(!config.tabIndexToSearch.includes(index) && !config.tabNameToSearch.includes(val)){
+                return [];
+            }
+        }
+        //accoutn can only make 45 calls per 60 seconds just make sure
+        let delay = tabList.length>43?config.API_limit_Delay_ms || 1400:0;
+        await sleep(delay*index);
+        return getTabItems(index, val);
+    }));
 
     return tabList.map((val, i) => {
         return {tabName:val, items:tabsContents[i]}
     });
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 /**
@@ -317,4 +329,4 @@ async function main(){
 main();
 setInterval(function(){
     main();
-}, 120000)
+}, (config.updateRate_ms || 120000))
