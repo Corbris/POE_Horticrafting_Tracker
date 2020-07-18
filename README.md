@@ -20,6 +20,10 @@ You can change the path of the report files to anywhere on your pc. Keep in mind
 
 
 # Customise your config
+`tabIndexToSearch` this will only fetch the given tab by index. Blank will fetch all tabs, ex `[1,2,3,4,10,12,13]`
+
+`tabNameToSearch` this will only fetch the given tab by its name. Blank will fetch all tabs, ex `["$", "Div Cards", "sell"]`
+
 `DiscordListInclude->hideFunctions` input the functions that you dont want to show in the discord formated file, ex `["Reforge","Randomise","Sacrifice"]`
 
 `DiscordListInclude->hideTypes` input the types that you dont want to show in the discord formated file, ex  `["non-Cold","non-Fire", "non-Lightning"]`
