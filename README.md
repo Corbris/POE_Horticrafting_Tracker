@@ -36,6 +36,10 @@ price->defaults will be the used value if the function type is not defined. This
 
 You can add and remove any function/type definitions
 
+`API_limit_Delay_ms` this is the delay between fetching each tab(if over 43 tabs) due to POE API rate limits. I would not go below 1400ms
+
+`updateRate_ms` this is the delay updating the lists. I would not go under 60000ms unless you have/are targeting very few stash tabs. Only 43 tabs can be fetch every 60sec.
+
 # crafts.json
 Some random crafts are not defined in the crafts.json If the craft is not found then it will fall under the "Others" category.
 
