@@ -64,7 +64,6 @@ Remove a random Fire modifier from an item (83) [x2]
 Remove a random Physical modifier from an item (81) [x2]
 Remove a random Physical modifier from an item (82) [x3]
 Remove a random Defence modifier from an item (83) [x2]
-Remove a random Life modifier from an item (81) [x1]
 Remove a random Attack modifier from an item (82) [x1]
 
 
@@ -131,14 +130,12 @@ Remove a random Physical modifier from an item and add a new Physical modifier (
 Remove a random Attack modifier from an item and add a new Attack modifier (81) [x1]
 Remove a random Attack modifier from an item and add a new Attack modifier (82) [x1]
 Remove a random Fire modifier from an item and add a new Fire modifier (82) [x1]
-Remove a random Defence modifier from an item and add a new Defence modifier (65) [x3]
-Remove a random Defence modifier from an item and add a new Defence modifier (82) [x2]
-Remove a random Defence modifier from an item and add a new Defence modifier (83) [x1]
 Remove a random Cold modifier from an item and add a new Cold modifier (65) [x1]
 Remove a random Cold modifier from an item and add a new Cold modifier (81) [x1]
 Remove a random Cold modifier from an item and add a new Cold modifier (82) [x1]
 Remove a random Cold modifier from an item and add a new Cold modifier (83) [x2]
 Remove a random Lightning modifier from an item and add a new Lightning modifier (65) [x7]
+Remove a random Defence modifier from an item and add a new Defence modifier (65) [x3]
 
 
 Augment (Lucky)
@@ -160,11 +157,10 @@ Augment an item with a new Lightning modifier (65) [x6]
 Augment an item with a new Lightning modifier (81) [x3]
 Augment an item with a new Lightning modifier (82) [x1]
 Augment a Magic or Rare item with a new Physical modifier (81) [x1]
-Augment an item with a new Defence modifier (65) [x1]
-Augment an item with a new Defence modifier (83) [x1]
 Augment a Magic or Rare item with a new Caster modifier (82) [x1]
 Augment a Magic or Rare item with a new Fire modifier (65) [x3]
 Augment an item with a new Chaos modifier (65) [x1]
+Augment an item with a new Defence modifier (65) [x1]
 
 
 Reforge

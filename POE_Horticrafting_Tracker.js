@@ -54,6 +54,14 @@ async function fetchAllTabs() {
     let tabList = await getTabList();
     if(tabList<1) return [];
 
+    let delay =0;
+    if(config.tabIndexToSearch.length+config.tabNameToSearch.length>43){
+        delay = config.API_limit_Delay_ms || 1400;
+    }
+    else if(tabList.length>43){
+        delay = config.API_limit_Delay_ms || 1400;
+    }
+
     // Fetch all tabs in parallel
     const tabsContents = await Promise.all(tabList.map(async (val, index) => {
         if(config.tabIndexToSearch.length>0 || config.tabNameToSearch.length>0){
@@ -62,7 +70,6 @@ async function fetchAllTabs() {
             }
         }
         //accoutn can only make 45 calls per 60 seconds just make sure
-        let delay = tabList.length>43?config.API_limit_Delay_ms || 1400:0;
         await sleep(delay*index);
         return getTabItems(index, val);
     }));

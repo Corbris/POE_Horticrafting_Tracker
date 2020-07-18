@@ -14,7 +14,7 @@
     "hideFunctions":["Reforge", "Others"],
     "hideTypes":["non-Cold","non-Fire", "non-Lightning", "non-Life", "non-Defence", "non-Chaos", "non-Attack", "non-Physical"],
     "hideIlevleUnder": 76,
-    "price": false
+    "price": true
 },
 "price":{
     "default": "30c",
