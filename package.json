@@ -19,6 +19,6 @@
   "homepage": "https://github.com/Corbris/POE_Horticrafting_Tracker#readme",
   "dependencies": {
     "axios": "^0.19.2",
-    "lodash": "^4.17.19"
+    "lodash": "^4.17.21"
   }
 }
